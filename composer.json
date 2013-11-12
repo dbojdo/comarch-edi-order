@@ -1,0 +1,29 @@
+{
+	"name" : "webit/comarch-edi-order",
+	"description" : "Comarch EDI Order Lib",
+	"type" : "library",
+	"authors" : [{
+			"name" : "Daniel Bojdo",
+			"email" : "daniel.bojdo@web-it.eu"
+		}
+	],
+	"keywords" : [
+		"webit",
+		"comarch",
+		"edi",
+		"order"
+	],
+	"homepage" : "http://www.web-it.eu",
+	"require" : {
+		"jms/serializer" : ">=0.12@dev",
+		"php" : ">=5.3.2"
+	},
+	"autoload" : {
+		"psr-0" : {
+			"Webit\\Comarch\\EDI\\Order" : "lib"
+		}
+	},
+	"support" : {
+		"email" : "daniel.bojdo@web-it.eu"
+	}
+}
