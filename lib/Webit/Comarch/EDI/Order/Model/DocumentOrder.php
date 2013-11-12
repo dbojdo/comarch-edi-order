@@ -4,7 +4,7 @@ namespace Webit\Comarch\EDI\Order\Model;
 use JMS\Serializer\Annotation as JMS;
 
 /**
- * 
+ * @see http://www.comarchedi.pl/files_pl/file_209/ORDER_XML_v20_20121106.pdf
  * @author dbojdo
  * @JMS\XmlRoot("Document-Order")
  */
