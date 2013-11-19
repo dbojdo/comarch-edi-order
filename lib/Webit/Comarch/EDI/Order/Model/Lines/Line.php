@@ -16,8 +16,8 @@ class Line
      *
      * @var array<LineItem>
      * 
-     * @JMS\Type(array<Webit\Comarch\EDI\Order\Model\Lines\LineItem>)
-     * @JMS\XmlList(inline="true", entry="Line-Item")
+     * @JMS\Type("array<Webit\Comarch\EDI\Order\Model\Lines\LineItem>")
+     * @JMS\XmlList(inline=true, entry="Line-Item")
      */
     protected $items;
 

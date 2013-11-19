@@ -213,7 +213,7 @@ class LineItem
      *
      * @var \DateTime
      * 
-     * @JMS\Type("string")
+     * @JMS\Type("DateTime<'H:i'>")
      * @JMS\SerializedName("ExpectedDeliveryTime")
      */
     protected $expectedDeliveryTime;

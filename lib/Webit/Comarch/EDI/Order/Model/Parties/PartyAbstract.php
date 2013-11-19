@@ -1,6 +1,8 @@
 <?php
 namespace Webit\Comarch\EDI\Order\Model\Parties;
 
+use JMS\Serializer\Annotation as JMS;
+
 abstract class PartyAbstract extends AddressAbstract
 {
 

@@ -17,7 +17,7 @@ class OrderLines
      * @var array
      * 
      * @JMS\Type("array<Webit\Comarch\EDI\Order\Model\Lines\Line>")
-     * @JMS\XmlList(inline = true, entry = "line")
+     * @JMS\XmlList(inline = true, entry = "Line")
      */
     protected $lines;
 

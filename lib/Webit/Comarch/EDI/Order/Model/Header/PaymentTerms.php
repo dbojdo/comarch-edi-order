@@ -37,7 +37,7 @@ class PaymentTerms
      *
      * @var \DateTime 
      * 
-     * @JMS\Type("DateTime<'Y-m-d'>")
+     * @JMS\Type("DataTime<'Y-m-d'>")
      * @JMS\SerializedName("PaymentDate")
      */
     protected $paymentDate;

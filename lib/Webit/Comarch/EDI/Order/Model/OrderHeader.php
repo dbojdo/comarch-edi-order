@@ -61,7 +61,7 @@ class OrderHeader
      * Czas zamówienia
      *
      * @var \DateTime
-     * @JMS\Type("string")
+     * @JMS\Type("DateTime<'H:i'>")
      * @JMS\SerializedName("OrderTime")
      */
     protected $orderTime;
@@ -79,7 +79,7 @@ class OrderHeader
      * Żądany czas dostawy
      *
      * @var \DateTime 
-     * @JMS\Type("string")
+     * @JMS\Type("DateTime<'H:i'>")
      * @JMS\SerializedName("ExpectedDeliveryTime")
      */
     protected $expectedDeliveryTime;
@@ -97,7 +97,7 @@ class OrderHeader
      * Czas odbioru
      *
      * @var \DateTime
-     * @JMS\Type("string")
+     * @JMS\Type("DateTime<'H:i'>")
      * @JMS\SerializedName("CollectionTime")
      */
     protected $collectionTime;
