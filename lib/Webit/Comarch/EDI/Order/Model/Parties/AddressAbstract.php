@@ -8,8 +8,8 @@ abstract class AddressAbstract
 
     /**
      *
-     * @var int
-     * @JMS\Type("integer")
+     * @var string
+     * @JMS\Type("string")
      * @JMS\SerializedName("ILN")
      */
     protected $iln;
@@ -56,7 +56,7 @@ abstract class AddressAbstract
 
     /**
      *
-     * @return int
+     * @return string
      */
     public function getIln()
     {
@@ -65,7 +65,7 @@ abstract class AddressAbstract
 
     /**
      *
-     * @param int $iln
+     * @param string $iln
      */
     public function setIln($iln)
     {

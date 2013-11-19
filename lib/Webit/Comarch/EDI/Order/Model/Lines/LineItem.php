@@ -52,9 +52,9 @@ class LineItem
     /**
      * EAN produktu
      *
-     * @var int
+     * @var string
      * 
-     * @JMS\Type("integer")
+     * @JMS\Type("string")
      * @JMS\SerializedName("EAN")
      */
     protected $ean;
@@ -289,7 +289,7 @@ class LineItem
 
     /**
      *
-     * @return int
+     * @return string
      */
     public function getEan()
     {
@@ -298,7 +298,7 @@ class LineItem
 
     /**
      *
-     * @param int $ean
+     * @param string $ean
      */
     public function setEan($ean)
     {
