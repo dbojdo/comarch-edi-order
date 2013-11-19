@@ -203,7 +203,7 @@ class LineItem
      *
      * @var \DateTime
      * 
-     * @JMS\Type("DateTime<Y-m-d>")
+     * @JMS\Type("DateTime<'Y-m-d'>")
      * @JMS\SerializedName("ExpectedDeliveryDate")
      */
     protected $expectedDeliveryDate;
@@ -213,7 +213,7 @@ class LineItem
      *
      * @var \DateTime
      * 
-     * @JMS\Type("DateTime<H:i>")
+     * @JMS\Type("DateTime<'H:i'>")
      * @JMS\SerializedName("ExpectedDeliveryTime")
      */
     protected $expectedDeliveryTime;
@@ -223,7 +223,7 @@ class LineItem
      *
      * @var \DateTime
      * 
-     * @JMS\Type("DateTime<Y-m-d>")
+     * @JMS\Type("DateTime<'Y-m-d'>")
      * @JMS\SerializedName("ExpirationDate")
      */
     protected $expirationDate;

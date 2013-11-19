@@ -52,7 +52,7 @@ class OrderHeader
      * Data zamówienia
      *
      * @var \DateTime
-     * @JMS\Type("DateTime<Y-m-d>")
+     * @JMS\Type("DateTime<'Y-m-d'>")
      * @JMS\SerializedName("OrderDate")
      */
     protected $orderDate;
@@ -61,7 +61,7 @@ class OrderHeader
      * Czas zamówienia
      *
      * @var \DateTime
-     * @JMS\Type("DateTime<H:i>")
+     * @JMS\Type("DateTime<'H:i'>")
      * @JMS\SerializedName("OrderTime")
      */
     protected $orderTime;
@@ -70,7 +70,7 @@ class OrderHeader
      * Żądana data dostawy
      *
      * @var \DateTime
-     * @JMS\Type("DateTime<Y-m-d>")
+     * @JMS\Type("DateTime<'Y-m-d'>")
      * @JMS\SerializedName("ExpectedDeliveryDate")
      */
     protected $expectedDeliveryDate;
@@ -79,7 +79,7 @@ class OrderHeader
      * Żądany czas dostawy
      *
      * @var \DateTime 
-     * @JMS\Type("DateTime<H:i>")
+     * @JMS\Type("DateTime<'H:i'>")
      * @JMS\SerializedName("ExpectedDeliveryTime")
      */
     protected $expectedDeliveryTime;
@@ -88,7 +88,7 @@ class OrderHeader
      * Data odbioru
      *
      * @var \DateTime
-     * @JMS\Type("DateTime<Y-m-d>")
+     * @JMS\Type("DateTime<'Y-m-d'>")
      * @JMS\SerializedName("CollectionDate")
      */
     protected $collectionDate;
@@ -97,7 +97,7 @@ class OrderHeader
      * Czas odbioru
      *
      * @var \DateTime
-     * @JMS\Type("DateTime<H:i>")
+     * @JMS\Type("DateTime<'H:i'>")
      * @JMS\SerializedName("CollectionTime")
      */
     protected $collectionTime;
