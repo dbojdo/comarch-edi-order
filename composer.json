@@ -25,5 +25,10 @@
 	},
 	"support" : {
 		"email" : "daniel.bojdo@web-it.eu"
-	}
+	},
+	"extra": {
+            "branch-alias": {
+                "dev-master": "1.x-dev"
+        }
+    }
 }
