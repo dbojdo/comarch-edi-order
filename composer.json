@@ -2,7 +2,7 @@
 	"name" : "webit/comarch-edi-order",
 	"description" : "Comarch EDI Order Lib",
 	"type" : "library",
-	"licence": "MIT",
+	"license": "MIT",
 	"authors" : [{
 			"name" : "Daniel Bojdo",
 			"email" : "daniel@bojdo.eu"
