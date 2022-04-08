@@ -1,13 +1,12 @@
 <?php
-namespace Tests\Webit\Comarch\EDI\Order\Parser;
+namespace Webit\Comarch\EDI\Order\Parser;
 
-use Webit\Comarch\EDI\Order\Parser\XmlFileParser;
-use Webit\Comarch\EDI\Order\Parser\XmlParser;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @author Daniel Bojdo <daniel@bojdo.eu>
  */
-class XmlFileParserTest extends \PHPUnit_Framework_TestCase
+class XmlFileParserTest extends TestCase
 {
     /**
      * @var \PHPUnit_Framework_MockObject_MockObject|XmlParser
@@ -19,7 +18,7 @@ class XmlFileParserTest extends \PHPUnit_Framework_TestCase
      */
     private $xmlFileParser;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $mockBuilder = $this->getMockBuilder('Webit\Comarch\EDI\Order\Parser\XmlParser');
         $this->xmlParser = $mockBuilder->disableOriginalConstructor()->getMock();

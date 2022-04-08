@@ -1,10 +1,12 @@
 <?php
-namespace Tests\Webit\Comarch\EDI\Order;
+namespace Webit\Comarch\EDI\Order;
+
+use PHPUnit\Framework\TestCase;
 
 /**
  * @author Daniel Bojdo <daniel@bojdo.eu>
  */
-abstract class AbstractDocumentMemberTest extends \PHPUnit_Framework_TestCase
+abstract class AbstractDocumentMemberTest extends TestCase
 {
     /**
      * @param array $arguments
@@ -19,6 +21,7 @@ abstract class AbstractDocumentMemberTest extends \PHPUnit_Framework_TestCase
             $getter = 'get'.ucfirst($key);
             $this->assertEquals($value, call_user_func(array($member, $getter)), sprintf('Property "%s" does not match', $key));
         }
+        $this->assertTrue(true);
     }
 
     /**
@@ -36,6 +39,7 @@ abstract class AbstractDocumentMemberTest extends \PHPUnit_Framework_TestCase
             call_user_func(array($orderSummary, $setter), $value);
             $this->assertEquals($value, call_user_func(array($orderSummary, $getter)), sprintf('Property "%s" does not match', $key));
         }
+        $this->assertTrue(true);
     }
 
     /**

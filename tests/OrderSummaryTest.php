@@ -1,5 +1,5 @@
 <?php
-namespace Tests\Webit\Comarch\EDI\Order;
+namespace Webit\Comarch\EDI\Order;
 
 /**
  * @author Daniel Bojdo <daniel@bojdo.eu>
@@ -37,6 +37,6 @@ class OrderSummaryTest extends AbstractDocumentMemberTest
      */
     protected function memberClass()
     {
-        return 'Webit\Comarch\EDI\Order\OrderSummary';
+        return OrderSummary::class;
     }
 }

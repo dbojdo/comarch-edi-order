@@ -1,28 +1,27 @@
 <?php
-namespace Tests\Webit\Comarch\EDI\Order\Parser;
+namespace Webit\Comarch\EDI\Order\Parser;
 
 use Doctrine\Common\Annotations\AnnotationRegistry;
+use PHPUnit\Framework\TestCase;
 use Webit\Comarch\EDI\Order\DocumentOrder;
-use Webit\Comarch\EDI\Order\Parser\XmlParser;
-use Webit\Comarch\EDI\Order\Parser\XmlParserBuilder;
 
 /**
  * @author Daniel Bojdo <daniel@bojdo.eu>
  */
-class XmlParserIntegrationTest extends \PHPUnit_Framework_TestCase
+class XmlParserIntegrationTest extends TestCase
 {
     /**
      * @var XmlParser
      */
     private $parser;
 
-    public static function setUpBeforeClass()
+    public static function setUpBeforeClass(): void
     {
         $autoload = include __DIR__.'/../../vendor/autoload.php';
         AnnotationRegistry::registerLoader(array($autoload, 'loadClass'));
     }
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $builder = new XmlParserBuilder();
         $this->parser = $builder->build();

@@ -1,13 +1,13 @@
 <?php
-namespace Tests\Webit\Comarch\EDI\Order\Parser;
+namespace Webit\Comarch\EDI\Order\Parser;
 
 use JMS\Serializer\SerializerInterface;
-use Webit\Comarch\EDI\Order\Parser\XmlParserBuilder;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @author Daniel Bojdo <daniel@bojdo.eu>
  */
-class XmlParserBuilderTest extends \PHPUnit_Framework_TestCase
+class XmlParserBuilderTest extends TestCase
 {
     /**
      * @test

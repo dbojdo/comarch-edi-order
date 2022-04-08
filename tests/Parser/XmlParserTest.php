@@ -1,16 +1,18 @@
 <?php
-namespace Tests\Webit\Comarch\EDI\Order\Parser;
+namespace Webit\Comarch\EDI\Order\Parser;
 
 use JMS\Serializer\SerializerInterface;
-use Webit\Comarch\EDI\Order\Parser\XmlParser;
+use PHPUnit\Framework\MockObject\MockObject;
+use PHPUnit\Framework\TestCase;
+use Webit\Comarch\EDI\Order\Parser\Exception\ParsingException;
 
 /**
  * @author Daniel Bojdo <daniel@bojdo.eu>
  */
-class XmlParserTest extends \PHPUnit_Framework_TestCase
+class XmlParserTest extends TestCase
 {
     /**
-     * @var SerializerInterface|\PHPUnit_Framework_MockObject_MockObject
+     * @var SerializerInterface|MockObject
      */
     private $serializer;
 
@@ -19,7 +21,7 @@ class XmlParserTest extends \PHPUnit_Framework_TestCase
      */
     private $xmlParser;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->serializer = $this->getMockBuilder('JMS\Serializer\SerializerInterface')->getMock();
         $this->xmlParser = new XmlParser($this->serializer);
@@ -46,7 +48,6 @@ class XmlParserTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-     * @expectedException \Webit\Comarch\EDI\Order\Parser\Exception\ParsingException
      */
     public function shouldThrowExceptionOnDeserialisationError()
     {
@@ -57,7 +58,7 @@ class XmlParserTest extends \PHPUnit_Framework_TestCase
             ->method('deserialize')
             ->with($content, 'Webit\Comarch\EDI\Order\DocumentOrder', 'xml')
             ->willThrowException(new \Exception('any exception'));
-
+        $this->expectException(ParsingException::class);
         $this->xmlParser->parse($content);
     }
 }
