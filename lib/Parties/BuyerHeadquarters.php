@@ -5,8 +5,8 @@ use JMS\Serializer\Annotation as JMS;
 
 /**
  * @author Daniel Bojdo <daniel@bojdo.eu>
- * @JMS\XmlRoot("BuyerHeadquarters")
  */
-class BuyerHeadquarters extends AddressAbstract
+#[JMS\XmlRoot('BuyerHeadquarters')]
+final class BuyerHeadquarters extends AddressAbstract
 {
 }

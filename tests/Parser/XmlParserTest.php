@@ -2,8 +2,10 @@
 namespace Webit\Comarch\EDI\Order\Parser;
 
 use JMS\Serializer\SerializerInterface;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
+use Webit\Comarch\EDI\Order\DocumentOrder;
 use Webit\Comarch\EDI\Order\Parser\Exception\ParsingException;
 
 /**
@@ -11,52 +13,40 @@ use Webit\Comarch\EDI\Order\Parser\Exception\ParsingException;
  */
 class XmlParserTest extends TestCase
 {
-    /**
-     * @var SerializerInterface|MockObject
-     */
-    private $serializer;
+    private SerializerInterface&MockObject $serializer;
 
-    /**
-     * @var XmlParser
-     */
-    private $xmlParser;
+    private XmlParser $xmlParser;
 
     protected function setUp(): void
     {
-        $this->serializer = $this->getMockBuilder('JMS\Serializer\SerializerInterface')->getMock();
+        $this->serializer = $this->getMockBuilder(SerializerInterface::class)->getMock();
         $this->xmlParser = new XmlParser($this->serializer);
     }
 
-    /**
-     * @test
-     */
-    public function shouldParseUsingSerializer()
+    #[Test]
+    public function shouldParseUsingSerializer(): void
     {
         $content = 'xml-content';
 
-        $expectedDocument = $this->getMockBuilder('Webit\Comarch\EDI\Order\DocumentOrder')
-            ->disableOriginalConstructor()
-            ->getMock();
+        $expectedDocument = new DocumentOrder();
 
         $this->serializer->expects($this->once())
             ->method('deserialize')
-            ->with($content, 'Webit\Comarch\EDI\Order\DocumentOrder', 'xml')
+            ->with($content, DocumentOrder::class, 'xml')
             ->willReturn($expectedDocument);
 
         $this->assertSame($expectedDocument, $this->xmlParser->parse($content));
     }
 
-    /**
-     * @test
-     */
-    public function shouldThrowExceptionOnDeserialisationError()
+    #[Test]
+    public function shouldThrowExceptionOnDeserialisationError(): void
     {
         $content = 'xml-content';
 
         $this->serializer
             ->expects($this->once())
             ->method('deserialize')
-            ->with($content, 'Webit\Comarch\EDI\Order\DocumentOrder', 'xml')
+            ->with($content, DocumentOrder::class, 'xml')
             ->willThrowException(new \Exception('any exception'));
         $this->expectException(ParsingException::class);
         $this->xmlParser->parse($content);

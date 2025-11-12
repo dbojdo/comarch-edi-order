@@ -1,32 +1,22 @@
 <?php
 namespace Webit\Comarch\EDI\Order\Parser;
 
+use Webit\Comarch\EDI\Order\DocumentOrder;
 use Webit\Comarch\EDI\Order\Parser\Exception\ParsingException;
 
 /**
  * @author Daniel Bojdo <daniel@bojdo.eu>
  */
-class XmlFileParser
+final readonly class XmlFileParser
 {
-    /**
-     * @var XmlParser
-     */
-    private $xmlParser;
-
-    /**
-     * XmlFileParser constructor.
-     * @param XmlParser $xmlParser
-     */
-    public function __construct(XmlParser $xmlParser)
+    public function __construct(private XmlParser $xmlParser)
     {
-        $this->xmlParser = $xmlParser;
     }
 
     /**
-     * @param \SplFileInfo $xmlFile
-     * @return \Webit\Comarch\EDI\Order\DocumentOrder
+     * @throws ParsingException
      */
-    public function parse(\SplFileInfo $xmlFile)
+    public function parse(\SplFileInfo $xmlFile): DocumentOrder
     {
         try {
             return $this->xmlParser->parse(file_get_contents($xmlFile->getPathname()));

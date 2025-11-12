@@ -5,8 +5,8 @@ use JMS\Serializer\Annotation as JMS;
 
 /**
  * @author Daniel Bojdo <daniel@bojdo.eu>
- * @JMS\XmlRoot("Invoice")
  */
-class Invoicee extends TaxAwareParty
+#[JMS\XmlRoot('Invoice')]
+final class Invoicee extends TaxAwareParty
 {
 }

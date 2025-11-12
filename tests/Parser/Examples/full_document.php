@@ -222,12 +222,12 @@ $document = new \Webit\Comarch\EDI\Order\DocumentOrder(
     new \Webit\Comarch\EDI\Order\OrderHeader(
         'OrderNumber_1',
         'Vendor-order-number',
-        date_create('2000-09-09'),
-        date_create('05:30'),
-        date_create('2000-09-10'),
-        date_create('07:30'),
-        date_create('2000-09-11'),
-        date_create('08:30'),
+        date_create_immutable('2000-09-09'),
+        date_create_immutable('05:30'),
+        date_create_immutable('2000-09-10'),
+        date_create_immutable('07:30'),
+        date_create_immutable('2000-09-11'),
+        date_create_immutable('08:30'),
         '260',
         'O',
         'OD',
@@ -237,7 +237,7 @@ $document = new \Webit\Comarch\EDI\Order\DocumentOrder(
             new \Webit\Comarch\EDI\Order\Header\PaymentTerms(
                 'OPIS',
                 12.00,
-                date_create('2000-10-12')
+                date_create_immutable('2000-10-12')
             )
         ),
         new \Webit\Comarch\EDI\Order\Header\Delivery(
@@ -375,9 +375,9 @@ $document = new \Webit\Comarch\EDI\Order\DocumentOrder(
                     23.45,
                     23.45,
                     'PLN',
-                    date_create('1999-09-09'),
-                    date_create('07:30'),
-                    date_create('1999-09-09'),
+                    date_create_immutable('1999-09-09'),
+                    date_create_immutable('07:30'),
+                    date_create_immutable('1999-09-09'),
                     '260',
                     1.000,
                     'CT',
@@ -411,9 +411,9 @@ $document = new \Webit\Comarch\EDI\Order\DocumentOrder(
                     45.45,
                     50.45,
                     'PLN',
-                    date_create('1999-09-09'),
-                    date_create('07:30'),
-                    date_create('1999-09-09'),
+                    date_create_immutable('1999-09-09'),
+                    date_create_immutable('07:30'),
+                    date_create_immutable('1999-09-09'),
                     '260',
                     1.000,
                     'CT',

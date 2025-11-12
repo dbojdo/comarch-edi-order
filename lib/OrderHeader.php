@@ -7,170 +7,85 @@ use Webit\Comarch\EDI\Order\Header\Delivery;
 
 /**
  * @author Daniel Bojdo <daniel@bojdo.eu>
- * @JMS\XmlRoot("Order-Header")
  */
-class OrderHeader
+#[JMS\XmlRoot('Order-Header')]
+final class OrderHeader
 {
-    /**
-     * @var string
-     */
-    const DOCUMENT_FUNCTION_CODE_ORIGINAL = 'O';
-    const DOCUMENT_FUNCTION_CODE_REPLACEMENT = 'R';
+    public const string DOCUMENT_FUNCTION_CODE_ORIGINAL = 'O';
+    public const string DOCUMENT_FUNCTION_CODE_REPLACEMENT = 'R';
+    public const string MESSAGE_TYPE_ORDER = 'OD';
+    public const string MESSAGE_TYPE_CROSS_DOCKING = 'CD';
 
-    /**
-     * @var string
-     */
-    const MESSAGE_TYPE_ORDER = 'OD';
-    const MESSAGE_TYPE_CROSS_DOCKING = 'CD';
+    #[JMS\SerializedName('OrderNumber')]
+    private ?string $orderNumber = null;
 
-    /**
-     * @var string 
-     * @JMS\Type("string")
-     * @JMS\SerializedName("OrderNumber")
-     */
-    private $orderNumber;
+    #[JMS\SerializedName('VendorOrderNumber')]
+    private ?string $vendorOrderNumber = null;
 
-    /**
-     * @var string 
-     * @JMS\Type("string")
-     * @JMS\SerializedName("VendorOrderNumber")
-     */
-    private $vendorOrderNumber;
+    #[JMS\SerializedName('OrderDate')]
+    private ?string $orderDate = null;
 
-    /**
-     * @var string
-     * @JMS\Type("string")
-     * @JMS\SerializedName("OrderDate")
-     */
-    private $orderDate;
+    #[JMS\SerializedName('OrderTime')]
+    private ?string $orderTime = null;
 
-    /**
-     * @var string
-     * @JMS\Type("string")
-     * @JMS\SerializedName("OrderTime")
-     */
-    private $orderTime;
+    #[JMS\SerializedName('ExpectedDeliveryDate')]
+    private ?string $expectedDeliveryDate = null;
 
-    /**
-     * @var string
-     * @JMS\Type("string")
-     * @JMS\SerializedName("ExpectedDeliveryDate")
-     */
-    private $expectedDeliveryDate;
+    #[JMS\SerializedName('ExpectedDeliveryTime')]
+    private ?string $expectedDeliveryTime = null;
 
-    /**
-     * @var string
-     * @JMS\Type("string")
-     * @JMS\SerializedName("ExpectedDeliveryTime")
-     */
-    private $expectedDeliveryTime;
+    #[JMS\SerializedName('CollectionDate')]
+    private ?string $collectionDate = null;
 
-    /**
-     * @var string
-     * @JMS\Type("string")
-     * @JMS\SerializedName("CollectionDate")
-     */
-    private $collectionDate;
+    #[JMS\SerializedName('CollectionTime')]
+    private ?string $collectionTime = null;
 
-    /**
-     * @var string
-     * @JMS\Type("string")
-     * @JMS\SerializedName("CollectionTime")
-     */
-    private $collectionTime;
+    #[JMS\SerializedName('PromotionReference')]
+    private ?string $promotionReference = null;
 
-    /**
-     * @var string
-     * @JMS\Type("string")
-     * @JMS\SerializedName("PromotionReference")
-     */
-    private $promotionReference;
+    #[JMS\SerializedName('DocumentFunctionCode')]
+    private ?string $documentFunctionCode = null;
 
-    /**
-     * @var string
-     * @JMS\Type("string")
-     * @JMS\SerializedName("DocumentFunctionCode")
-     */
-    private $documentFunctionCode;
+    #[JMS\SerializedName('MessageType')]
+    private ?string $messageType = null;
 
-    /**
-     * @var string
-     * @JMS\Type("string")
-     * @JMS\SerializedName("MessageType")
-     */
-    private $messageType;
+    #[JMS\SerializedName('Remarks')]
+    private ?string $remarks = null;
 
-    /**
-     * @var string
-     * @JMS\Type("string")
-     * @JMS\SerializedName("Remarks")
-     */
-    private $remarks;
+    #[JMS\SerializedName('OrderCurrency')]
+    private ?string $orderCurrency = null;
 
-    /**
-     * @var string
-     * @JMS\Type("string")
-     * @JMS\SerializedName("OrderCurrency")
-     */
-    private $orderCurrency;
+    #[JMS\SerializedName('Payment')]
+    private ?Payment $payment = null;
 
-    /**
-     * @var Payment
-     * @JMS\Type("Webit\Comarch\EDI\Order\Header\Payment")
-     * @JMS\SerializedName("Payment")
-     */
-    private $payment;
+    #[JMS\SerializedName('Delivery')]
+    private ?Delivery $delivery = null;
 
-    /**
-     * @var Delivery
-     * @JMS\Type("Webit\Comarch\EDI\Order\Header\Delivery")
-     * @JMS\SerializedName("Delivery")
-     */
-    private $delivery;
-
-    /**
-     * OrderHeader constructor.
-     * @param string $orderNumber
-     * @param string $vendorOrderNumber
-     * @param \DateTime $orderDate
-     * @param \DateTime $orderTime
-     * @param \DateTime $expectedDeliveryDate
-     * @param \DateTime $expectedDeliveryTime
-     * @param \DateTime $collectionDate
-     * @param \DateTime $collectionTime
-     * @param string $promotionReference
-     * @param string $documentFunctionCode
-     * @param string $messageType
-     * @param string $remarks
-     * @param string $orderCurrency
-     * @param Payment $payment
-     * @param Delivery $delivery
-     */
     public function __construct(
-        $orderNumber = null,
-        $vendorOrderNumber = null,
-        \DateTime $orderDate = null,
-        \DateTime $orderTime = null,
-        \DateTime $expectedDeliveryDate = null,
-        \DateTime $expectedDeliveryTime = null,
-        \DateTime $collectionDate = null,
-        \DateTime $collectionTime = null,
-        $promotionReference = null,
-        $documentFunctionCode = null,
-        $messageType = null,
-        $remarks = null,
-        $orderCurrency = null,
-        Payment $payment = null,
-        Delivery $delivery = null
+        ?string $orderNumber = null,
+        ?string $vendorOrderNumber = null,
+        \DateTimeImmutable $orderDate = null,
+        \DateTimeImmutable $orderTime = null,
+        \DateTimeImmutable $expectedDeliveryDate = null,
+        \DateTimeImmutable $expectedDeliveryTime = null,
+        \DateTimeImmutable $collectionDate = null,
+        \DateTimeImmutable $collectionTime = null,
+        ?string $promotionReference = null,
+        ?string $documentFunctionCode = null,
+        ?string $messageType = null,
+        ?string $remarks = null,
+        ?string $orderCurrency = null,
+        ?Payment $payment = null,
+        ?Delivery $delivery = null
     ) {
         $this->orderNumber = $orderNumber;
         $this->vendorOrderNumber = $vendorOrderNumber;
-        $this->orderDate = $orderDate ? $orderDate->format('Y-m-d') : null;
-        $this->orderTime = $orderTime ? $orderTime->format('H:i') : null;
-        $this->expectedDeliveryDate = $expectedDeliveryDate ? $expectedDeliveryDate->format('Y-m-d') : null;
-        $this->expectedDeliveryTime = $expectedDeliveryTime ? $expectedDeliveryTime->format('H:i') : null;
-        $this->collectionDate = $collectionDate ? $collectionDate->format('Y-m-d') : null;
-        $this->collectionTime = $collectionTime ? $collectionTime->format('H:i') : null;
+        $this->orderDate = $orderDate?->format('Y-m-d');
+        $this->orderTime = $orderTime?->format('H:i');
+        $this->expectedDeliveryDate = $expectedDeliveryDate?->format('Y-m-d');
+        $this->expectedDeliveryTime = $expectedDeliveryTime?->format('H:i');
+        $this->collectionDate = $collectionDate?->format('Y-m-d');
+        $this->collectionTime = $collectionTime?->format('H:i');
         $this->promotionReference = $promotionReference;
         $this->documentFunctionCode = $documentFunctionCode;
         $this->messageType = $messageType;
@@ -180,156 +95,97 @@ class OrderHeader
         $this->delivery = $delivery;
     }
 
-    /**
-     * @return string
-     */
-    public function getOrderNumber()
+    public function getOrderNumber(): ?string
     {
         return $this->orderNumber;
     }
 
-    /**
-     * @param string $orderNumber
-     */
-    public function setOrderNumber($orderNumber)
+    public function setOrderNumber(string $orderNumber): void
     {
         $this->orderNumber = $orderNumber;
     }
 
-    /**
-     * @return string
-     */
-    public function getVendorOrderNumber()
+    public function getVendorOrderNumber(): ?string
     {
         return $this->vendorOrderNumber;
     }
 
-    /**
-     * @param string $vendorOrderNumber
-     */
-    public function setVendorOrderNumber($vendorOrderNumber)
+    public function setVendorOrderNumber(string $vendorOrderNumber): void
     {
         $this->vendorOrderNumber = $vendorOrderNumber;
     }
 
-    /**
-     * @return \DateTime
-     */
-    public function getOrderDate()
+    public function getOrderDate(): ?\DateTimeImmutable
     {
-        return $this->orderDate ? date_create($this->orderDate) : null;
+        return $this->orderDate ? date_create_immutable($this->orderDate) : null;
     }
 
-    /**
-     *
-     * @param \DateTime $orderDate            
-     */
-    public function setOrderDate(\DateTime $orderDate)
+    public function setOrderDate(\DateTimeImmutable $orderDate): void
     {
         $this->orderDate = $orderDate->format('Y-m-d');
     }
 
-    /**
-     * @return \DateTime
-     */
-    public function getOrderTime()
+    public function getOrderTime(): ?\DateTimeImmutable
     {
-        return $this->orderTime ? date_create($this->orderTime) : null;
+        return $this->orderTime ? date_create_immutable($this->orderTime) : null;
     }
 
-    /**
-     *
-     * @param \DateTime $orderTime            
-     */
-    public function setOrderTime(\DateTime $orderTime)
+    public function setOrderTime(\DateTimeImmutable $orderTime): void
     {
         $this->orderTime = $orderTime->format('H:i');
     }
 
-    /**
-     * @return \DateTime
-     */
-    public function getExpectedDeliveryDate()
+    public function getExpectedDeliveryDate(): ?\DateTimeImmutable
     {
-        return $this->expectedDeliveryDate ? date_create($this->expectedDeliveryDate) : null;
+        return $this->expectedDeliveryDate ? date_create_immutable($this->expectedDeliveryDate) : null;
     }
 
-    /**
-     * @param \DateTime $expectedDeliveryDate            
-     */
-    public function setExpectedDeliveryDate(\DateTime $expectedDeliveryDate)
+    public function setExpectedDeliveryDate(\DateTimeImmutable $expectedDeliveryDate): void
     {
-        $this->expectedDeliveryDate = $expectedDeliveryDate;
+        $this->expectedDeliveryDate = $expectedDeliveryDate->format('Y-m-d');
     }
 
-    /**
-     * @return \DateTime
-     */
-    public function getExpectedDeliveryTime()
+    public function getExpectedDeliveryTime(): ?\DateTimeImmutable
     {
-        return $this->expectedDeliveryTime ? date_create($this->expectedDeliveryTime) : null;
+        return $this->expectedDeliveryTime ? date_create_immutable($this->expectedDeliveryTime) : null;
     }
 
-    /**
-     * @param \DateTime $expectedDeliveryTime            
-     */
-    public function setExpectedDeliveryTime(\DateTime $expectedDeliveryTime)
+    public function setExpectedDeliveryTime(\DateTimeImmutable $expectedDeliveryTime): void
     {
         $this->expectedDeliveryTime = $expectedDeliveryTime->format('H:i');
     }
 
-    /**
-     * @return \DateTime
-     */
-    public function getCollectionDate()
+    public function getCollectionDate(): ?\DateTimeImmutable
     {
-        return $this->collectionDate ? date_create($this->collectionDate) : null;
+        return $this->collectionDate ? date_create_immutable($this->collectionDate) : null;
     }
 
-    /**
-     * @param \DateTime $collectionDate            
-     */
-    public function setCollectionDate(\DateTime $collectionDate)
+    public function setCollectionDate(\DateTimeImmutable $collectionDate): void
     {
         $this->collectionDate = $collectionDate->format('Y-m-d');
     }
 
-    /**
-     * @return \DateTime
-     */
-    public function getCollectionTime()
+    public function getCollectionTime(): ?\DateTimeImmutable
     {
-        return $this->collectionTime ? date_create($this->collectionTime) : null;
+        return $this->collectionTime ? date_create_immutable($this->collectionTime) : null;
     }
 
-    /**
-     * @param \DateTime $collectionTime            
-     */
-    public function setCollectionTime(\DateTime $collectionTime)
+    public function setCollectionTime(\DateTimeImmutable $collectionTime): void
     {
         $this->collectionTime = $collectionTime->format('H:i');
     }
 
-    /**
-     * @return string
-     */
-    public function getPromotionReference()
+    public function getPromotionReference(): ?string
     {
         return $this->promotionReference;
     }
 
-    /**
-     * @param string $promotionReference
-     */
-    public function setPromotionReference($promotionReference)
+    public function setPromotionReference(string $promotionReference): void
     {
         $this->promotionReference = $promotionReference;
     }
 
-    /**
-     * @return string
-     */
-    public function getDocumentFunctionCode()
+    public function getDocumentFunctionCode(): ?string
     {
         return $this->documentFunctionCode;
     }
@@ -337,87 +193,57 @@ class OrderHeader
     /**
      * @param string $documentFunctionCode
      */
-    public function setDocumentFunctionCode($documentFunctionCode)
+    public function setDocumentFunctionCode(string $documentFunctionCode): void
     {
         $this->documentFunctionCode = $documentFunctionCode;
     }
 
-    /**
-     * @return string
-     */
-    public function getMessageType()
+    public function getMessageType(): ?string
     {
         return $this->messageType;
     }
 
-    /**
-     * @param string $messageType
-     */
-    public function setMessageType($messageType)
+    public function setMessageType(string $messageType): void
     {
         $this->messageType = $messageType;
     }
 
-    /**
-     * @return string
-     */
-    public function getRemarks()
+    public function getRemarks(): ?string
     {
         return $this->remarks;
     }
 
-    /**
-     * @param string $remarks
-     */
-    public function setRemarks($remarks)
+    public function setRemarks(string $remarks): void
     {
         $this->remarks = $remarks;
     }
 
-    /**
-     * @return string
-     */
-    public function getOrderCurrency()
+    public function getOrderCurrency(): ?string
     {
         return $this->orderCurrency;
     }
 
-    /**
-     * @param string $orderCurrency
-     */
-    public function setOrderCurrency($orderCurrency)
+    public function setOrderCurrency(string $orderCurrency): void
     {
         $this->orderCurrency = $orderCurrency;
     }
 
-    /**
-     * @return Payment
-     */
-    public function getPayment()
+    public function getPayment(): ?Payment
     {
         return $this->payment;
     }
 
-    /**
-     * @param Payment $payment            
-     */
-    public function setPayment(Payment $payment)
+    public function setPayment(Payment $payment): void
     {
         $this->payment = $payment;
     }
 
-    /**
-     * @return Delivery
-     */
-    public function getDelivery()
+    public function getDelivery(): ?Delivery
     {
         return $this->delivery;
     }
 
-    /**
-     * @param Delivery $delivery            
-     */
-    public function setDelivery(Delivery $delivery)
+    public function setDelivery(Delivery $delivery): void
     {
         $this->delivery = $delivery;
     }

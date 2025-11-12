@@ -5,240 +5,127 @@ use JMS\Serializer\Annotation as JMS;
 
 /**
  * @author Daniel Bojdo <daniel@bojdo.eu>
- * @JMS\XmlRoot("Line-Item")
  */
-class LineItem
+#[JMS\XmlRoot('Line-Item')]
+final class LineItem
 {
     /**
      * Typ opakowania zwrotnego
      *
      * @var string
      */
-    const ITEM_TYPE_CU = 'CU';
-    const ITEM_TYPE_RC = 'RC';
+    public const string ITEM_TYPE_CU = 'CU';
+    public const string ITEM_TYPE_RC = 'RC';
 
     /**
      * Jednostki miary
      *
      * @var string
      */
-    const UNIT_OF_MEASURE_PCE = 'PCE';
-    const UNIT_OF_MEASURE_KGM = 'KGM';
-    const UNIT_OF_MEASURE_MTR = 'MTR';
-    const UNIT_OF_MEASURE_MTK = 'MTK';
-    const UNIT_OF_MEASURE_LTR = 'LTR';
-    const UNIT_OF_MEASURE_PR = 'PR';
-    const UNIT_OF_MEASURE_TNE = 'TNE';
+    public const string UNIT_OF_MEASURE_PCE = 'PCE';
+    public const string UNIT_OF_MEASURE_KGM = 'KGM';
+    public const string UNIT_OF_MEASURE_MTR = 'MTR';
+    public const string UNIT_OF_MEASURE_MTK = 'MTK';
+    public const string UNIT_OF_MEASURE_LTR = 'LTR';
+    public const string UNIT_OF_MEASURE_PR = 'PR';
+    public const string UNIT_OF_MEASURE_TNE = 'TNE';
 
     /**
      * Identyfikacja typu opakowania
      *
      * @var string
      */
-    const PACKAGE_TYPE_CT = 'CT';
+    public const string PACKAGE_TYPE_CT = 'CT';
 
-    /**
-     * @var int
-     * @JMS\Type("integer")
-     * @JMS\SerializedName("LineNumber")
-     */
-    private $number;
+    #[JMS\SerializedName("LineNumber")]
+    private ?int $number = null;
 
-    /**
-     * @var string
-     * @JMS\Type("string")
-     * @JMS\SerializedName("EAN")
-     */
-    private $ean;
+    #[JMS\SerializedName("EAN")]
+    private ?string $ean = null;
 
-    /**
-     * @var string
-     * @JMS\Type("string")
-     * @JMS\SerializedName("BuyerItemCode")
-     */
-    private $buyerItemCode;
+    #[JMS\SerializedName("BuyerItemCode")]
+    private ?string $buyerItemCode = null;
 
-    /**
-     * @var string
-     * @JMS\Type("string")
-     * @JMS\SerializedName("SupplierItemCode")
-     */
-    private $supplierItemCode;
+    #[JMS\SerializedName("SupplierItemCode")]
+    private ?string $supplierItemCode = null;
 
-    /**
-     * @var int
-     * @JMS\Type("string")
-     * @JMS\SerializedName("PackageEAN")
-     */
-    private $packageEan;
+    #[JMS\SerializedName("PackageEAN")]
+    private ?string $packageEan = null;
 
-    /**
-     * @var string
-     * @JMS\Type("string")
-     * @JMS\SerializedName("ItemDescription")
-     */
-    private $description;
+    #[JMS\SerializedName("ItemDescription")]
+    private ?string $description = null;
 
-    /**
-     * @var string
-     * @JMS\Type("string")
-     * @JMS\SerializedName("ItemType")
-     */
-    private $type;
+    #[JMS\SerializedName("ItemType")]
+    private ?string $type = null;
 
-    /**
-     * @var float
-     * @JMS\Type("double")
-     * @JMS\SerializedName("OrderedQuantity")
-     */
-    private $orderedQuantity;
+    #[JMS\SerializedName("OrderedQuantity")]
+    private ?float $orderedQuantity = null;
 
-    /**
-     * @var float
-     * @JMS\Type("double")
-     * @JMS\SerializedName("FreeOrderedQuantity")
-     */
-    private $freeOrderedQuantity;
+    #[JMS\SerializedName("FreeOrderedQuantity")]
+    private ?float $freeOrderedQuantity = null;
 
-    /**
-     * @var float
-     * @JMS\Type("double")
-     * @JMS\SerializedName("OrderedUnitPacksize")
-     */
-    private $orderedUnitPacksize;
+    #[JMS\SerializedName("OrderedUnitPacksize")]
+    private ?float $orderedUnitPacksize = null;
 
-    /**
-     * @var float
-     * @JMS\Type("double")
-     * @JMS\SerializedName("InvoicedQuantity")
-     */
-    private $invoicedQuantity;
+    #[JMS\SerializedName("InvoicedQuantity")]
+    private ?float $invoicedQuantity = null;
 
-    /**
-     * @var string
-     * @JMS\Type("string")
-     * @JMS\SerializedName("UnitOfMeasure")
-     */
-    private $unitOfMeasure;
+    #[JMS\SerializedName("UnitOfMeasure")]
+    private ?string $unitOfMeasure = null;
 
-    /**
-     * @var float
-     * @JMS\Type("double")
-     * @JMS\SerializedName("OrderedUnitNetPrice")
-     */
-    private $orderedUnitNetPrice;
+    #[JMS\SerializedName("OrderedUnitNetPrice")]
+    private ?float $orderedUnitNetPrice = null;
 
-    /**
-     * @var float
-     * @JMS\Type("double")
-     * @JMS\SerializedName("OrderedUnitRetailPrice")
-     */
-    private $orderUnitRetailPrice;
+    #[JMS\SerializedName("OrderedUnitRetailPrice")]
+    private ?float $orderUnitRetailPrice = null;
 
-    /**
-     * @var string
-     * @JMS\Type("string")
-     * @JMS\SerializedName("OrderCurrency")
-     */
-    private $orderedCurrency;
+    #[JMS\SerializedName("OrderCurrency")]
+    private ?string $orderedCurrency = null;
 
-    /**
-     * @var string
-     * @JMS\Type("string")
-     * @JMS\SerializedName("ExpectedDeliveryDate")
-     */
-    private $expectedDeliveryDate;
+    #[JMS\SerializedName("ExpectedDeliveryDate")]
+    private ?string $expectedDeliveryDate = null;
 
-    /**
-     * @var string
-     * @JMS\Type("string")
-     * @JMS\SerializedName("ExpectedDeliveryTime")
-     */
-    private $expectedDeliveryTime;
+    #[JMS\SerializedName("ExpectedDeliveryTime")]
+    private ?string $expectedDeliveryTime = null;
 
-    /**
-     * @var string
-     * @JMS\Type("string")
-     * @JMS\SerializedName("ExpirationDate")
-     */
-    private $expirationDate;
+    #[JMS\SerializedName("ExpirationDate")]
+    private ?string $expirationDate = null;
 
-    /**
-     * @var string
-     * @JMS\Type("string")
-     * @JMS\SerializedName("PromotionReference")
-     */
-    private $promotionReference;
+    #[JMS\SerializedName("PromotionReference")]
+    private ?string $promotionReference = null;
 
-    /**
-     * @var float
-     * @JMS\Type("double")
-     * @JMS\SerializedName("PackageNumber")
-     */
-    private $packageNumber;
+    #[JMS\SerializedName("PackageNumber")]
+    private ?float $packageNumber = null;
 
-    /**
-     * @var string
-     * @JMS\Type("string")
-     * @JMS\SerializedName("PackageType")
-     */
-    private $packageType;
+    #[JMS\SerializedName("PackageType")]
+    private ?string $packageType = null;
 
-    /**
-     * @var string
-     * @JMS\Type("string")
-     * @JMS\SerializedName("Remarks")
-     */
-    private $remarks;
+    #[JMS\SerializedName("Remarks")]
+    private ?string $remarks = null;
 
-    /**
-     * LineItem constructor.
-     * @param int $number
-     * @param string $ean
-     * @param string $buyerItemCode
-     * @param string $supplierItemCode
-     * @param int $packageEan
-     * @param string $description
-     * @param string $type
-     * @param float $orderedQuantity
-     * @param float $freeOrderedQuantity
-     * @param float $orderedUnitPacksize
-     * @param float $invoicedQuantity
-     * @param string $unitOfMeasure
-     * @param float $orderedUnitNetPrice
-     * @param float $orderUnitRetailPrice
-     * @param string $orderedCurrency
-     * @param \DateTime $expectedDeliveryDate
-     * @param \DateTime $expectedDeliveryTime
-     * @param \DateTime $expirationDate
-     * @param string $promotionReference
-     * @param float $packageNumber
-     * @param string $packageType
-     * @param string $remarks
-     */
     public function __construct(
-        $number = null,
-        $ean= null,
-        $buyerItemCode= null,
-        $supplierItemCode= null,
-        $packageEan= null,
-        $description= null,
-        $type= null,
-        $orderedQuantity= null,
-        $freeOrderedQuantity= null,
-        $orderedUnitPacksize= null,
-        $invoicedQuantity= null,
-        $unitOfMeasure= null,
-        $orderedUnitNetPrice= null,
-        $orderUnitRetailPrice= null,
-        $orderedCurrency= null,
-        \DateTime $expectedDeliveryDate = null,
-        \DateTime $expectedDeliveryTime = null,
-        \DateTime $expirationDate= null,
-        $promotionReference= null,
-        $packageNumber= null,
-        $packageType= null,
-        $remarks= null
+        ?int $number = null,
+        ?string $ean= null,
+        ?string $buyerItemCode= null,
+        ?string $supplierItemCode= null,
+        ?string $packageEan= null,
+        ?string $description= null,
+        ?string $type= null,
+        ?float $orderedQuantity= null,
+        ?float $freeOrderedQuantity= null,
+        ?float $orderedUnitPacksize= null,
+        ?float $invoicedQuantity= null,
+        ?string $unitOfMeasure= null,
+        ?float $orderedUnitNetPrice= null,
+        ?float $orderUnitRetailPrice= null,
+        ?string $orderedCurrency= null,
+        ?\DateTimeImmutable $expectedDeliveryDate = null,
+        ?\DateTimeImmutable $expectedDeliveryTime = null,
+        ?\DateTimeImmutable $expirationDate= null,
+        ?string $promotionReference= null,
+        ?float $packageNumber= null,
+        ?string $packageType= null,
+        ?string $remarks = null,
     ) {
         $this->number = $number;
         $this->ean = $ean;
@@ -255,91 +142,61 @@ class LineItem
         $this->orderedUnitNetPrice = $orderedUnitNetPrice;
         $this->orderUnitRetailPrice = $orderUnitRetailPrice;
         $this->orderedCurrency = $orderedCurrency;
-        $this->expectedDeliveryDate = $expectedDeliveryDate ? $expectedDeliveryDate->format('Y-m-d') : null;
-        $this->expectedDeliveryTime = $expectedDeliveryTime ? $expectedDeliveryTime->format('H:i') : null;
-        $this->expirationDate = $expirationDate ? $expirationDate->format('Y-m-d') : null;
+        $this->expectedDeliveryDate = $expectedDeliveryDate?->format('Y-m-d');
+        $this->expectedDeliveryTime = $expectedDeliveryTime?->format('H:i');
+        $this->expirationDate = $expirationDate?->format('Y-m-d');
         $this->promotionReference = $promotionReference;
         $this->packageNumber = $packageNumber;
         $this->packageType = $packageType;
         $this->remarks = $remarks;
     }
 
-    /**
-     * @return int
-     */
-    public function getNumber()
+    public function getNumber(): ?int
     {
         return $this->number;
     }
 
-    /**
-     * @param int $number
-     */
-    public function setNumber($number)
+    public function setNumber(?int $number): void
     {
         $this->number = $number;
     }
 
-    /**
-     * @return string
-     */
-    public function getEan()
+    public function getEan(): ?string
     {
         return $this->ean;
     }
 
-    /**
-     * @param string $ean
-     */
-    public function setEan($ean)
+    public function setEan(?string $ean): void
     {
         $this->ean = $ean;
     }
 
-    /**
-     * @return string
-     */
-    public function getBuyerItemCode()
+    public function getBuyerItemCode(): ?string
     {
         return $this->buyerItemCode;
     }
 
-    /**
-     * @param string $buyerItemCode
-     */
-    public function setBuyerItemCode($buyerItemCode)
+    public function setBuyerItemCode(?string $buyerItemCode): void
     {
         $this->buyerItemCode = $buyerItemCode;
     }
 
-    /**
-     * @return string
-     */
-    public function getSupplierItemCode()
+    public function getSupplierItemCode(): ?string
     {
         return $this->supplierItemCode;
     }
 
-    /**
-     * @param string $supplierItemCode
-     */
-    public function setSupplierItemCode($supplierItemCode)
+    public function setSupplierItemCode(?string $supplierItemCode): void
     {
         $this->supplierItemCode = $supplierItemCode;
     }
 
-    /**
-     * @return int
-     */
-    public function getPackageEan()
+    public function getPackageEan(): ?string
     {
         return $this->packageEan;
     }
 
-    /**
-     * @param int $packageEan
-     */
-    public function setPackageEan($packageEan)
+    public function setPackageEan(?string $packageEan): void
     {
         $this->packageEan = $packageEan;
     }
@@ -347,151 +204,97 @@ class LineItem
     /**
      * @return string
      */
-    public function getDescription()
+    public function getDescription(): ?string
     {
         return $this->description;
     }
 
-    /**
-     * @param string $description
-     */
-    public function setDescription($description)
+    public function setDescription(?string $description): void
     {
         $this->description = $description;
     }
 
-    /**
-     * @return string
-     */
-    public function getType()
+    public function getType(): ?string
     {
         return $this->type;
     }
 
-    /**
-     * @param string $type
-     */
-    public function setType($type)
+    public function setType(?string $type): void
     {
         $this->type = $type;
     }
 
-    /**
-     * @return float
-     */
-    public function getOrderedQuantity()
+    public function getOrderedQuantity(): ?float
     {
         return $this->orderedQuantity;
     }
 
-    /**
-     * @param float $orderedQuantity
-     */
-    public function setOrderedQuantity($orderedQuantity)
+    public function setOrderedQuantity(?float $orderedQuantity): void
     {
         $this->orderedQuantity = $orderedQuantity;
     }
 
-    /**
-     * @return float
-     */
-    public function getFreeOrderedQuantity()
+    public function getFreeOrderedQuantity(): ?float
     {
         return $this->freeOrderedQuantity;
     }
 
-    /**
-     * @param float $freeOrderedQuantity
-     */
-    public function setFreeOrderedQuantity($freeOrderedQuantity)
+    public function setFreeOrderedQuantity(?float $freeOrderedQuantity): void
     {
         $this->freeOrderedQuantity = $freeOrderedQuantity;
     }
 
-    /**
-     * @return float
-     */
-    public function getOrderedUnitPacksize()
+    public function getOrderedUnitPacksize(): ?float
     {
         return $this->orderedUnitPacksize;
     }
 
-    /**
-     * @param float $orderedUnitPacksize
-     */
-    public function setOrderedUnitPacksize($orderedUnitPacksize)
+    public function setOrderedUnitPacksize(?float $orderedUnitPacksize): void
     {
         $this->orderedUnitPacksize = $orderedUnitPacksize;
     }
 
-    /**
-     * @return float
-     */
-    public function getInvoicedQuantity()
+    public function getInvoicedQuantity(): ?float
     {
         return $this->invoicedQuantity;
     }
 
-    /**
-     * @param float $invoicedQuantity
-     */
-    public function setInvoicedQuantity($invoicedQuantity)
+    public function setInvoicedQuantity(?float $invoicedQuantity): void
     {
         $this->invoicedQuantity = $invoicedQuantity;
     }
 
-    /**
-     * @return string
-     */
-    public function getUnitOfMeasure()
+    public function getUnitOfMeasure(): ?string
     {
         return $this->unitOfMeasure;
     }
 
-    /**
-     * @param string $unitOfMeasure
-     */
-    public function setUnitOfMeasure($unitOfMeasure)
+    public function setUnitOfMeasure(?string $unitOfMeasure): void
     {
         $this->unitOfMeasure = $unitOfMeasure;
     }
 
-    /**
-     * @return float
-     */
-    public function getOrderedUnitNetPrice()
+    public function getOrderedUnitNetPrice(): ?float
     {
         return $this->orderedUnitNetPrice;
     }
 
-    /**
-     * @param float $orderedUnitNetPrice
-     */
-    public function setOrderedUnitNetPrice($orderedUnitNetPrice)
+    public function setOrderedUnitNetPrice(?float $orderedUnitNetPrice): void
     {
         $this->orderedUnitNetPrice = $orderedUnitNetPrice;
     }
 
-    /**
-     * @return float
-     */
-    public function getOrderUnitRetailPrice()
+    public function getOrderUnitRetailPrice(): ?float
     {
         return $this->orderUnitRetailPrice;
     }
 
-    /**
-     * @param float $orderUnitRetailPrice
-     */
-    public function setOrderUnitRetailPrice($orderUnitRetailPrice)
+    public function setOrderUnitRetailPrice(?float $orderUnitRetailPrice): void
     {
         $this->orderUnitRetailPrice = $orderUnitRetailPrice;
     }
 
-    /**
-     * @return string
-     */
-    public function getOrderedCurrency()
+    public function getOrderedCurrency(): ?string
     {
         return $this->orderedCurrency;
     }
@@ -499,119 +302,77 @@ class LineItem
     /**
      * @param string $orderedCurrency
      */
-    public function setOrderedCurrency($orderedCurrency)
+    public function setOrderedCurrency(?string $orderedCurrency): void
     {
         $this->orderedCurrency = $orderedCurrency;
     }
 
-    /**
-     * @return \DateTime
-     */
-    public function getExpectedDeliveryDate()
+    public function getExpectedDeliveryDate(): ?\DateTimeImmutable
     {
-        return $this->expectedDeliveryDate ? date_create($this->expectedDeliveryDate) : null;
+        return $this->expectedDeliveryDate ? date_create_immutable($this->expectedDeliveryDate) : null;
     }
 
-    /**
-     * @param \DateTime $expectedDeliveryDate
-     */
-    public function setExpectedDeliveryDate(\DateTime $expectedDeliveryDate)
+    public function setExpectedDeliveryDate(\DateTimeImmutable $expectedDeliveryDate): void
     {
         $this->expectedDeliveryDate = $expectedDeliveryDate->format('Y-m-d');
     }
 
-    /**
-     * @return \DateTime
-     */
-    public function getExpectedDeliveryTime()
+    public function getExpectedDeliveryTime(): ?\DateTimeImmutable
     {
-        return $this->expectedDeliveryTime ? date_create($this->expectedDeliveryTime) : null;
+        return $this->expectedDeliveryTime ? date_create_immutable($this->expectedDeliveryTime) : null;
     }
 
-    /**
-     * @param \DateTime $expectedDeliveryTime
-     */
-    public function setExpectedDeliveryTime(\DateTime $expectedDeliveryTime)
+    public function setExpectedDeliveryTime(\DateTimeImmutable $expectedDeliveryTime): void
     {
         $this->expectedDeliveryTime = $expectedDeliveryTime->format('H:i');
     }
 
-    /**
-     * @return \DateTime
-     */
-    public function getExpirationDate()
+    public function getExpirationDate(): ?\DateTimeImmutable
     {
-        return $this->expirationDate ? date_create($this->expirationDate) : null;
+        return $this->expirationDate ? date_create_immutable($this->expirationDate) : null;
     }
 
-    /**
-     * @param \DateTime $expirationDate
-     */
-    public function setExpirationDate(\DateTime $expirationDate)
+    public function setExpirationDate(\DateTimeImmutable $expirationDate): void
     {
         $this->expirationDate = $expirationDate->format('Y-m-d');
     }
 
-    /**
-     * @return string
-     */
-    public function getPromotionReference()
+    public function getPromotionReference(): ?string
     {
         return $this->promotionReference;
     }
 
-    /**
-     * @param string $promotionReference
-     */
-    public function setPromotionReference($promotionReference)
+    public function setPromotionReference(?string $promotionReference): void
     {
         $this->promotionReference = $promotionReference;
     }
 
-    /**
-     * @return float
-     */
-    public function getPackageNumber()
+    public function getPackageNumber(): ?float
     {
         return $this->packageNumber;
     }
 
-    /**
-     * @param string $packageNumber
-     */
-    public function setPackageNumber($packageNumber)
+    public function setPackageNumber(?float $packageNumber): void
     {
         $this->packageNumber = $packageNumber;
     }
 
-    /**
-     * @return string
-     */
-    public function getPackageType()
+    public function getPackageType(): ?string
     {
         return $this->packageType;
     }
 
-    /**
-     * @param string $packageType
-     */
-    public function setPackageType($packageType)
+    public function setPackageType(?string $packageType): void
     {
         $this->packageType = $packageType;
     }
 
-    /**
-     * @return string
-     */
-    public function getRemarks()
+    public function getRemarks(): ?string
     {
         return $this->remarks;
     }
 
-    /**
-     * @param string $remarks
-     */
-    public function setRemarks($remarks)
+    public function setRemarks(?string $remarks): void
     {
         $this->remarks = $remarks;
     }

@@ -5,35 +5,27 @@ use JMS\Serializer\Annotation as JMS;
 
 /**
  * @author Daniel Bojdo <daniel@bojdo.eu>
- * @JMS\XmlRoot("Seller")
  */
-class Seller extends TaxAndAccountNumberAwareParty
+#[JMS\XmlRoot('Seller')]
+final class Seller extends TaxAndAccountNumberAwareParty
 {
-    /**
-     * @var string
-     * @JMS\Type("string")
-     * @JMS\SerializedName("CodeByBuyer")
-     */
-    private $codeByBuyer;
+    #[JMS\SerializedName('CodeByBuyer')]
+    private ?string $codeByBuyer = null;
 
-    /**
-     * @var string
-     * @JMS\Type("string")
-     * @JMS\SerializedName("Fax")
-     */
-    private $fax;
+    #[JMS\SerializedName('Fax')]
+    private ?string $fax = null;
 
     public function __construct(
-        $iln = null,
-        $taxId = null,
-        $accountNumber = null,
-        $name = null,
-        $streetAndNumber = null,
-        $cityName = null,
-        $postalCode = null,
-        $country = null,
-        $codeByBuyer = null,
-        $fax = null
+        ?string $iln = null,
+        ?string $taxId = null,
+        ?string $accountNumber = null,
+        ?string $name = null,
+        ?string $streetAndNumber = null,
+        ?string $cityName = null,
+        ?string $postalCode = null,
+        ?string $country = null,
+        ?string $codeByBuyer = null,
+        ?string $fax = null
     ) {
         parent::__construct($iln, $taxId, $accountNumber, $name, $streetAndNumber, $cityName, $postalCode, $country);
 
@@ -41,34 +33,22 @@ class Seller extends TaxAndAccountNumberAwareParty
         $this->fax = $fax;
     }
 
-    /**
-     * @return string
-     */
-    public function getCodeByBuyer()
+    public function getCodeByBuyer(): ?string
     {
         return $this->codeByBuyer;
     }
 
-    /**
-     * @param string $codeByBuyer
-     */
-    public function setCodeByBuyer($codeByBuyer)
+    public function setCodeByBuyer(?string $codeByBuyer): void
     {
         $this->codeByBuyer = $codeByBuyer;
     }
 
-    /**
-     * @return string
-     */
-    public function getFax()
+    public function getFax(): ?string
     {
         return $this->fax;
     }
 
-    /**
-     * @param string $fax
-     */
-    public function setFax($fax)
+    public function setFax(?string $fax): void
     {
         $this->fax = $fax;
     }

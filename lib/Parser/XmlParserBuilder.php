@@ -1,23 +1,18 @@
 <?php
 namespace Webit\Comarch\EDI\Order\Parser;
 
+use JMS\Serializer\Serializer;
 use JMS\Serializer\SerializerBuilder;
 use JMS\Serializer\SerializerInterface;
 
 /**
  * @author Daniel Bojdo <daniel@bojdo.eu>
  */
-class XmlParserBuilder
+final class XmlParserBuilder
 {
-    /**
-     * @var string
-     */
-    private $cacheDir;
+    private ?string $cacheDir = null;
 
-    /**
-     * @var SerializerInterface
-     */
-    private $serializer;
+    private ?SerializerInterface $serializer = null;
 
     /**
      * Set the cache directory for the underlying Serializer instance
@@ -26,38 +21,30 @@ class XmlParserBuilder
      *
      * @param string $cacheDir
      */
-    public function setCacheDir($cacheDir)
+    public function setCacheDir($cacheDir): void
     {
         $this->cacheDir = $cacheDir;
         $this->serializer = null;
     }
 
     /**
-     * Set the the underlying Serializer instance
+     * Set the underlying Serializer instance
      * This method resets the cache dir previously set with "setCacheDir"
      *
      * @param SerializerInterface $serializer
      */
-    public function setSerializer(SerializerInterface $serializer)
+    public function setSerializer(SerializerInterface $serializer): void
     {
         $this->serializer = $serializer;
         $this->cacheDir = null;
     }
 
-    /**
-     * @return XmlParser
-     */
-    public function build()
+    public function build(): XmlParser
     {
-        $serialiser = $this->serializer ?: $this->createSerializer();
-
-        return new XmlParser($serialiser);
+        return new XmlParser($this->serializer ?: $this->createSerializer());
     }
 
-    /**
-     * @return \JMS\Serializer\Serializer
-     */
-    private function createSerializer()
+    private function createSerializer(): Serializer
     {
         $serialiserBuilder = SerializerBuilder::create();
         $serialiserBuilder->addDefaultHandlers();

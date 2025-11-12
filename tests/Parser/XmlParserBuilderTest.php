@@ -2,6 +2,7 @@
 namespace Webit\Comarch\EDI\Order\Parser;
 
 use JMS\Serializer\SerializerInterface;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -9,27 +10,23 @@ use PHPUnit\Framework\TestCase;
  */
 class XmlParserBuilderTest extends TestCase
 {
-    /**
-     * @test
-     */
-    public function shouldBuildParser()
+    #[Test]
+    public function shouldBuildParser(): void
     {
         $builder = new XmlParserBuilder();
         $builder->setCacheDir(sys_get_temp_dir());
 
-        $this->assertInstanceOf('Webit\Comarch\EDI\Order\Parser\XmlParser', $builder->build());
+        $this->assertInstanceOf(XmlParser::class, $builder->build());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function shouldSupportCustomSerializer()
     {
         /** @var SerializerInterface $serializer */
-        $serializer = $this->getMockBuilder('JMS\Serializer\SerializerInterface')->getMock();
+        $serializer = $this->getMockBuilder(SerializerInterface::class)->getMock();
         $builder = new XmlParserBuilder();
         $builder->setSerializer($serializer);
 
-        $this->assertInstanceOf('Webit\Comarch\EDI\Order\Parser\XmlParser', $builder->build());
+        $this->assertInstanceOf(XmlParser::class, $builder->build());
     }
 }

@@ -5,63 +5,34 @@ use JMS\Serializer\Annotation as JMS;
 
 /**
  * @author Daniel Bojdo <daniel@bojdo.eu>
- * @JMS\XmlRoot("Line")
  */
-class Line
+#[JMS\XmlRoot('Line')]
+final class Line
 {
-    /**
-     * @var LineItem
-     * @JMS\Type("Webit\Comarch\EDI\Order\Lines\LineItem")
-     * @JMS\SerializedName("Line-Item")
-     */
-    private $lineItem;
-
-    /**
-     * @var LineParties
-     * @JMS\Type("Webit\Comarch\EDI\Order\Lines\LineParties")
-     * @JMS\SerializedName("Line-Parties")
-     */
-    private $parties;
-
-    /**
-     * Line constructor.
-     * @param LineItem $lineItem
-     * @param LineParties $parties
-     */
-    public function __construct(LineItem $lineItem = null, LineParties $parties = null)
-    {
-        $this->lineItem = $lineItem;
-        $this->parties = $parties;
+    public function __construct(
+        #[JMS\SerializedName('Line-Item')]
+        private ?LineItem $lineItem = null,
+        #[JMS\SerializedName('Line-Parties')]
+        private ?LineParties $parties = null,
+    ) {
     }
 
-    /**
-     * @return LineItem
-     */
-    public function getLineItem()
+    public function getLineItem(): ?LineItem
     {
         return $this->lineItem;
     }
 
-    /**
-     * @param LineItem $lineItem
-     */
-    public function setLineItem(LineItem $lineItem)
+    public function setLineItem(?LineItem $lineItem): void
     {
         $this->lineItem = $lineItem;
     }
 
-	/**
-	 * @return LineParties
-	 */
-	public function getParties()
+	public function getParties(): ?LineParties
 	{
 		return $this->parties;
 	}
-	
-	/**
-	 * @param LineParties $parties
-	 */
-	public function setParties(LineParties $parties)
+
+	public function setParties(?LineParties $parties): void
 	{
 		$this->parties = $parties;
 	}

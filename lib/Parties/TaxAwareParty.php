@@ -8,38 +8,28 @@ use JMS\Serializer\Annotation as JMS;
  */
 abstract class TaxAwareParty extends AddressAbstract
 {
-    /**
-     * @var string
-     * @JMS\Type("string")
-     * @JMS\SerializedName("TaxID")
-     */
-    private $taxId;
+    #[JMS\SerializedName('TaxID')]
+    private ?string $taxId = null;
 
     public function __construct(
-        $iln = null,
-        $taxId = null,
-        $name = null,
-        $streetAndNumber = null,
-        $cityName = null,
-        $postalCode = null,
-        $country = null
+        ?string $iln = null,
+        ?string $taxId = null,
+        ?string $name = null,
+        ?string $streetAndNumber = null,
+        ?string $cityName = null,
+        ?string $postalCode = null,
+        ?string $country = null
     ) {
         parent::__construct($iln, $name, $streetAndNumber, $cityName, $postalCode, $country);
         $this->taxId = $taxId;
     }
 
-    /**
-     * @return string
-     */
-    public function getTaxId()
+    public function getTaxId(): ?string
     {
         return $this->taxId;
     }
 
-    /**
-     * @param string $taxId
-     */
-    public function setTaxId($taxId)
+    public function setTaxId(?string $taxId): void
     {
         $this->taxId = $taxId;
     }

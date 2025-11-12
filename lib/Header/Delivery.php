@@ -5,38 +5,24 @@ use JMS\Serializer\Annotation as JMS;
 
 /**
  * @author Daniel Bojdo <daniel@bojdo.eu>
- * @JMS\XmlRoot("Delivery")
  */
-class Delivery
+#[JMS\XmlRoot('Delivery')]
+final class Delivery
 {
-    /**
-     * @var DeliveryTerms
-     * @JMS\Type("Webit\Comarch\EDI\Order\Header\DeliveryTerms")
-     * @JMS\SerializedName("DeliveryTerms")
-     */
-    private $deliveryTerms;
+    #[JMS\SerializedName('DeliveryTerms')]
+    private ?DeliveryTerms $deliveryTerms;
 
-    /**
-     * Delivery constructor.
-     * @param DeliveryTerms $deliveryTerms
-     */
     public function __construct(DeliveryTerms $deliveryTerms = null)
     {
         $this->deliveryTerms = $deliveryTerms;
     }
 
-    /**
-     * @return DeliveryTerms
-     */
-    public function getDeliveryTerms()
+    public function getDeliveryTerms(): ?DeliveryTerms
     {
         return $this->deliveryTerms;
     }
 
-    /**
-     * @param DeliveryTerms $deliveryTerms
-     */
-    public function setDeliveryTerms(DeliveryTerms $deliveryTerms)
+    public function setDeliveryTerms(?DeliveryTerms $deliveryTerms): void
     {
         $this->deliveryTerms = $deliveryTerms;
     }

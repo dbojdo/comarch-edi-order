@@ -8,40 +8,30 @@ use JMS\Serializer\Annotation as JMS;
  */
 abstract class TaxAndAccountNumberAwareParty extends TaxAwareParty
 {
-    /**
-     * @var string
-     * @JMS\Type("string")
-     * @JMS\SerializedName("AccountNumber")
-     */
-    private $accountNumber;
+    #[JMS\SerializedName('AccountNumber')]
+    private ?string $accountNumber = null;
 
     public function __construct(
-        $iln = null,
-        $taxId = null,
-        $accountNumber = null,
-        $name = null,
-        $streetAndNumber = null,
-        $cityName = null,
-        $postalCode = null,
-        $country = null
+        ?string $iln = null,
+        ?string $taxId = null,
+        ?string $accountNumber = null,
+        ?string $name = null,
+        ?string $streetAndNumber = null,
+        ?string $cityName = null,
+        ?string $postalCode = null,
+        ?string $country = null
     ) {
         parent::__construct($iln, $taxId, $name, $streetAndNumber, $cityName, $postalCode, $country);
 
         $this->accountNumber = $accountNumber;
     }
 
-    /**
-     * @return string
-     */
-    public function getAccountNumber()
+    public function getAccountNumber(): ?string
     {
         return $this->accountNumber;
     }
 
-    /**
-     * @param string $accountNumber
-     */
-    public function setAccountNumber($accountNumber)
+    public function setAccountNumber(?string $accountNumber): void
     {
         $this->accountNumber = $accountNumber;
     }

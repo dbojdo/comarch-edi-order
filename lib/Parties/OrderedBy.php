@@ -5,8 +5,8 @@ use JMS\Serializer\Annotation as JMS;
 
 /**
  * @author Daniel Bojdo <daniel@bojdo.eu>
- * @JMS\XmlRoot("OrderedBy")
  */
-class OrderedBy extends TaxAndAccountNumberAwareParty
+#[JMS\XmlRoot('OrderedBy')]
+final class OrderedBy extends TaxAndAccountNumberAwareParty
 {
 }

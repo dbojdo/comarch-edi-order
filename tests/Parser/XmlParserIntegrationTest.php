@@ -1,7 +1,7 @@
 <?php
 namespace Webit\Comarch\EDI\Order\Parser;
 
-use Doctrine\Common\Annotations\AnnotationRegistry;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Webit\Comarch\EDI\Order\DocumentOrder;
 
@@ -10,16 +10,7 @@ use Webit\Comarch\EDI\Order\DocumentOrder;
  */
 class XmlParserIntegrationTest extends TestCase
 {
-    /**
-     * @var XmlParser
-     */
-    private $parser;
-
-    public static function setUpBeforeClass(): void
-    {
-        $autoload = include __DIR__.'/../../vendor/autoload.php';
-        AnnotationRegistry::registerLoader(array($autoload, 'loadClass'));
-    }
+    private XmlParser $parser;
 
     protected function setUp(): void
     {
@@ -27,21 +18,17 @@ class XmlParserIntegrationTest extends TestCase
         $this->parser = $builder->build();
     }
 
-    /**
-     * @param string $xml
-     * @param DocumentOrder $expectedDocument
-     * @dataProvider xmlDocumentOrders
-     */
-    public function testParse($xml, DocumentOrder $expectedDocument)
+    #[DataProvider('xmlDocumentOrders')]
+    public function testParse(string $xml, DocumentOrder $expectedDocument): void
     {
         $this->assertEquals($expectedDocument, $this->parser->parse($xml));
     }
 
-    public function xmlDocumentOrders()
+    public static function xmlDocumentOrders(): array
     {
-        return array(
-            'full_document' => include __DIR__.'/Examples/full_document.php',
-            'mandatory_only' => include __DIR__.'/Examples/mandatory_only.php'
-        );
+        return [
+            'full_document' => include __DIR__ . '/Examples/full_document.php',
+            'mandatory_only' => include __DIR__ . '/Examples/mandatory_only.php'
+        ];
     }
 }

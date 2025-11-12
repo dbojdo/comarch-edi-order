@@ -10,25 +10,14 @@ use Webit\Comarch\EDI\Order\Parser\Exception\ParsingException;
  */
 class XmlParser
 {
-    /**
-     * @var SerializerInterface
-     */
-    private $serializer;
-
-    /**
-     * XmlParser constructor.
-     * @param SerializerInterface $serializer
-     */
-    public function __construct(SerializerInterface $serializer)
+    public function __construct(private SerializerInterface $serializer)
     {
-        $this->serializer = $serializer;
     }
 
     /**
-     * @param string $xml
-     * @return DocumentOrder
+     * @throws ParsingException
      */
-    public function parse($xml)
+    public function parse(string $xml): DocumentOrder
     {
         try {
             /** @var DocumentOrder $document */

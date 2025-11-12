@@ -5,30 +5,19 @@ use JMS\Serializer\Annotation as JMS;
 
 /**
  * @author Daniel Bojdo <daniel@bojdo.eu>
- * @JMS\XmlRoot("Payment")
  */
-class Payment
+#[JMS\XmlRoot('Payment')]
+final class Payment
 {
-    /**
-     * @var PaymentTerms
-     * @JMS\Type("Webit\Comarch\EDI\Order\Header\PaymentTerms")
-     * @JMS\SerializedName("PaymentTerms")
-     */
-    private $paymentTerms;
+    #[JMS\SerializedName('PaymentTerms')]
+    private ?PaymentTerms $paymentTerms = null;
 
-    /**
-     * Payment constructor.
-     * @param PaymentTerms $paymentTerms
-     */
-    public function __construct(PaymentTerms $paymentTerms = null)
+    public function __construct(?PaymentTerms $paymentTerms = null)
     {
         $this->paymentTerms = $paymentTerms;
     }
 
-    /**
-     * @return PaymentTerms
-     */
-    public function getPaymentTerms()
+    public function getPaymentTerms(): ?PaymentTerms
     {
         return $this->paymentTerms;
     }
@@ -36,7 +25,7 @@ class Payment
     /**
      * @param PaymentTerms $paymentTerms            
      */
-    public function setPaymentTerms(PaymentTerms $paymentTerms)
+    public function setPaymentTerms(?PaymentTerms $paymentTerms): void
     {
         $this->paymentTerms = $paymentTerms;
     }

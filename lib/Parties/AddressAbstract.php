@@ -8,64 +8,31 @@ use JMS\Serializer\Annotation as JMS;
  */
 abstract class AddressAbstract
 {
-    /**
-     * @var string
-     * @JMS\Type("string")
-     * @JMS\SerializedName("ILN")
-     */
-    private $iln;
+    #[JMS\SerializedName('ILN')]
+    private ?string $iln = null;
 
-    /**
-     * @var string
-     * @JMS\Type("string")
-     * @JMS\SerializedName("Name")
-     */
-    private $name;
+    #[JMS\SerializedName('Name')]
+    private ?string $name = null;
 
-    /**
-     * @var string
-     * @JMS\Type("string")
-     * @JMS\SerializedName("StreetAndNumber")
-     */
-    private $streetAndNumber;
+    #[JMS\SerializedName('StreetAndNumber')]
+    private ?string $streetAndNumber = null;
 
-    /**
-     * @var string
-     * @JMS\Type("string")
-     * @JMS\SerializedName("CityName")
-     */
-    private $cityName;
+    #[JMS\SerializedName('CityName')]
+    private ?string $cityName = null;
 
-    /**
-     * @var string
-     * @JMS\Type("string")
-     * @JMS\SerializedName("PostalCode")
-     */
-    private $postalCode;
+    #[JMS\SerializedName('PostalCode')]
+    private ?string $postalCode = null;
 
-    /**
-     * @var string
-     * @JMS\Type("string")
-     * @JMS\SerializedName("Country")
-     */
-    private $country;
+    #[JMS\SerializedName('Country')]
+    private ?string $country = null;
 
-    /**
-     * AddressAbstract constructor.
-     * @param string $iln
-     * @param string $name
-     * @param string $streetAndNumber
-     * @param string $cityName
-     * @param string $postalCode
-     * @param string $country
-     */
     public function __construct(
-        $iln = null,
-        $name = null,
-        $streetAndNumber = null,
-        $cityName = null,
-        $postalCode = null,
-        $country = null
+        ?string $iln = null,
+        ?string $name = null,
+        ?string $streetAndNumber = null,
+        ?string $cityName = null,
+        ?string $postalCode = null,
+        ?string $country = null
     ) {
         $this->iln = $iln;
         $this->name = $name;
@@ -75,98 +42,62 @@ abstract class AddressAbstract
         $this->country = $country;
     }
 
-    /**
-     * @return string
-     */
-    public function getIln()
+    public function getIln(): ?string
     {
         return $this->iln;
     }
 
-    /**
-     * @param string $iln
-     */
-    public function setIln($iln)
+    public function setIln(?string $iln): void
     {
         $this->iln = $iln;
     }
 
-    /**
-     * @return string
-     */
-    public function getName()
+    public function getName(): ?string
     {
         return $this->name;
     }
 
-    /**
-     * @param string $name
-     */
-    public function setName($name)
+    public function setName(?string $name): void
     {
         $this->name = $name;
     }
 
-    /**
-     * @return string
-     */
-    public function getStreetAndNumber()
+    public function getStreetAndNumber(): ?string
     {
         return $this->streetAndNumber;
     }
 
-    /**
-     * @param string $streetAndNumber
-     */
-    public function setStreetAndNumber($streetAndNumber)
+    public function setStreetAndNumber(?string $streetAndNumber): void
     {
         $this->streetAndNumber = $streetAndNumber;
     }
 
-    /**
-     * @return string
-     */
-    public function getCityName()
+    public function getCityName(): ?string
     {
         return $this->cityName;
     }
 
-    /**
-     * @param string $cityName
-     */
-    public function setCityName($cityName)
+    public function setCityName(?string $cityName): void
     {
         $this->cityName = $cityName;
     }
 
-    /**
-     * @return string
-     */
-    public function getPostalCode()
+    public function getPostalCode(): ?string
     {
         return $this->postalCode;
     }
 
-    /**
-     * @param string $postalCode
-     */
-    public function setPostalCode($postalCode)
+    public function setPostalCode(string $postalCode): void
     {
         $this->postalCode = $postalCode;
     }
 
-    /**
-     * @return string
-     */
-    public function getCountry()
+    public function getCountry(): ?string
     {
         return $this->country;
     }
 
-    /**
-     * @param string $country
-     */
-    public function setCountry($country)
+    public function setCountry(?string $country): void
     {
         $this->country = $country;
     }

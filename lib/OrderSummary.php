@@ -5,88 +5,52 @@ use JMS\Serializer\Annotation as JMS;
 
 /**
  * @author Daniel Bojdo <daniel@bojdo.eu>
- * @JMS\XmlRoot("Order-Summary")
  */
-class OrderSummary
+#[JMS\XmlRoot('Order-Summary')]
+final class OrderSummary
 {
-    /**
-     * @var int
-     * @JMS\Type("integer")
-     * @JMS\SerializedName("TotalLines")
-     */
-    private $totalLines;
+    #[JMS\SerializedName('TotalLines')]
+    private ?int $totalLines = null;
 
-    /**
-     * @var float
-     * @JMS\Type("double")
-     * @JMS\SerializedName("TotalOrderedAmount")
-     */
-    private $totalOrderedAmount;
+    #[JMS\SerializedName('TotalOrderedAmount')]
+    private ?float $totalOrderedAmount = null;
 
-    /**
-     * @var float
-     * @JMS\Type("double")
-     * @JMS\SerializedName("TotalNetAmount")
-     */
-    private $totalNetAmount;
+    #[JMS\SerializedName('TotalNetAmount')]
+    private ?float $totalNetAmount = null;
 
-    /**
-     * OrderSummary constructor.
-     * @param int $totalLines
-     * @param float $totalOrderedAmount
-     * @param float $totalNetAmount
-     */
-    public function __construct($totalLines = null, $totalOrderedAmount = null, $totalNetAmount = null)
+    public function __construct(?int $totalLines = null, ?float $totalOrderedAmount = null, ?float $totalNetAmount = null)
     {
         $this->totalLines = $totalLines;
         $this->totalOrderedAmount = $totalOrderedAmount;
         $this->totalNetAmount = $totalNetAmount;
     }
 
-    /**
-     * @return int
-     */
-    public function getTotalLines()
+    public function getTotalLines(): ?int
     {
         return $this->totalLines;
     }
 
-    /**
-     * @param int $totalLines
-     */
-    public function setTotalLines($totalLines)
+    public function setTotalLines(?int $totalLines): void
     {
         $this->totalLines = $totalLines;
     }
 
-    /**
-     * @return float
-     */
-    public function getTotalOrderedAmount()
+    public function getTotalOrderedAmount(): ?float
     {
         return $this->totalOrderedAmount;
     }
 
-    /**
-     * @param float $totalOrderedAmount
-     */
-    public function setTotalOrderedAmount($totalOrderedAmount)
+    public function setTotalOrderedAmount(?float $totalOrderedAmount): void
     {
         $this->totalOrderedAmount = $totalOrderedAmount;
     }
 
-    /**
-     * @return float
-     */
-    public function getTotalNetAmount()
+    public function getTotalNetAmount(): ?float
     {
         return $this->totalNetAmount;
     }
 
-    /**
-     * @param float $totalNetAmount
-     */
-    public function setTotalNetAmount($totalNetAmount)
+    public function setTotalNetAmount(?float $totalNetAmount): void
     {
         $this->totalNetAmount = $totalNetAmount;
     }

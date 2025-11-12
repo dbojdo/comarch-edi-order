@@ -6,45 +6,22 @@ use JMS\Serializer\Annotation as JMS;
 /**
  * @see http://www.comarchedi.pl/files_pl/file_209/ORDER_XML_v20_20121106.pdf
  * @author Daniel Bojdo <daniel@bojdo.eu>
- * @JMS\XmlRoot("Document-Order")
  */
-class DocumentOrder
+#[JMS\XmlRoot('Document-Order')]
+final class DocumentOrder
 {
-    /**
-     * @var OrderHeader
-     * @JMS\Type("Webit\Comarch\EDI\Order\OrderHeader")
-     * @JMS\SerializedName("Order-Header")
-     */
-    private $orderHeader;
+    #[JMS\SerializedName('Order-Header')]
+    private ?OrderHeader $orderHeader = null;
 
-    /**
-     * @var OrderParties
-     * @JMS\Type("Webit\Comarch\EDI\Order\OrderParties")
-     * @JMS\SerializedName("Order-Parties")
-     */
-    private $orderParties;
+    #[JMS\SerializedName('Order-Parties')]
+    private ?OrderParties $orderParties = null;
 
-    /**
-     * @var OrderLines
-     * @JMS\Type("Webit\Comarch\EDI\Order\OrderLines")
-     * @JMS\SerializedName("Order-Lines")
-     */
-    private $orderLines;
+    #[JMS\SerializedName('Order-Lines')]
+    private ?OrderLines $orderLines = null;
 
-    /**
-     * @var OrderSummary
-     * @JMS\Type("Webit\Comarch\EDI\Order\OrderSummary")
-     * @JMS\SerializedName("Order-Summary")
-     */
-    private $orderSummary;
+    #[JMS\SerializedName('Order-Summary')]
+    private ?OrderSummary $orderSummary = null;
 
-    /**
-     * DocumentOrder constructor.
-     * @param OrderHeader $orderHeader
-     * @param OrderParties $orderParties
-     * @param OrderLines $orderLines
-     * @param OrderSummary $orderSummary
-     */
     public function __construct(
         OrderHeader $orderHeader = null,
         OrderParties $orderParties = null,
@@ -57,66 +34,42 @@ class DocumentOrder
         $this->orderSummary = $orderSummary;
     }
 
-    /**
-     * @return OrderHeader
-     */
-    public function getOrderHeader()
+    public function getOrderHeader(): ?OrderHeader
     {
         return $this->orderHeader;
     }
 
-    /**
-     * @param OrderHeader $orderHeader            
-     */
-    public function setOrderHeader(OrderHeader $orderHeader)
+    public function setOrderHeader(OrderHeader $orderHeader): void
     {
         $this->orderHeader = $orderHeader;
     }
 
-    /**
-     * @return OrderParties
-     */
-    public function getOrderParties()
+    public function getOrderParties(): ?OrderParties
     {
         return $this->orderParties;
     }
 
-    /**
-     * @param OrderParties $orderParties            
-     */
-    public function setOrderParties(OrderParties $orderParties)
+    public function setOrderParties(OrderParties $orderParties): void
     {
         $this->orderParties = $orderParties;
     }
 
-    /**
-     * @return OrderLines
-     */
-    public function getOrderLines()
+    public function getOrderLines(): ?OrderLines
     {
         return $this->orderLines;
     }
 
-    /**
-     * @param OrderLines $orderLines            
-     */
-    public function setOrderLines(OrderLines $orderLines)
+    public function setOrderLines(OrderLines $orderLines): void
     {
         $this->orderLines = $orderLines;
     }
 
-    /**
-     * @return OrderSummary
-     */
-    public function getOrderSummary()
+    public function getOrderSummary(): ?OrderSummary
     {
         return $this->orderSummary;
     }
 
-    /**
-     * @param OrderSummary $orderSummary            
-     */
-    public function setOrderSummary(OrderSummary $orderSummary)
+    public function setOrderSummary(OrderSummary $orderSummary): void
     {
         $this->orderSummary = $orderSummary;
     }

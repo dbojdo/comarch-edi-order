@@ -41,7 +41,7 @@ $document = new \Webit\Comarch\EDI\Order\DocumentOrder(
     new \Webit\Comarch\EDI\Order\OrderHeader(
         'OrderNumber_1',
         null,
-        date_create('2000-09-09'),
+        date_create_immutable('2000-09-09'),
         null,
         null,
         null,

@@ -2,35 +2,29 @@
 namespace Webit\Comarch\EDI\Order;
 
 use JMS\Serializer\Annotation as JMS;
+use Webit\Comarch\EDI\Order\Jms\ArrayType;
 use Webit\Comarch\EDI\Order\Lines\Line;
 
 /**
  * @author Daniel Bojdo <daniel@bojdo.eu>
- * @JMS\XmlRoot("Order-Lines")
  */
-class OrderLines implements \IteratorAggregate
+#[JMS\XmlRoot('Order-Lines')]
+final class OrderLines implements \IteratorAggregate
 {
-
     /**
-     * @var Line[]
-     * @JMS\Type("array<Webit\Comarch\EDI\Order\Lines\Line>")
-     * @JMS\XmlList(inline = true, entry = "Line")
-     */
-    private $lines = array();
-
-    /**
-     * OrderLines constructor.
      * @param Line[] $lines
      */
-    public function __construct(array $lines = array())
-    {
-        $this->lines = $lines;
+    public function __construct(
+        #[JMS\XmlList(entry: 'Line', inline: true)]
+        #[JMS\Type(name: new ArrayType(Line::class))]
+        private array $lines = []
+    ) {
     }
 
     /**
      * @return Line[]
      */
-    public function getLines()
+    public function getLines(): array
     {
         return $this->lines;
     }
@@ -38,17 +32,13 @@ class OrderLines implements \IteratorAggregate
     /**
      * @param Line[] $lines
      */
-    public function setLines(array $lines)
+    public function setLines(array $lines): void
     {
         $this->lines = $lines;
     }
 
-    /**
-     * @inheritdoc
-     */
-    public function getIterator()
+    public function getIterator(): \Traversable
     {
         return new \ArrayIterator($this->getLines());
     }
 }
-

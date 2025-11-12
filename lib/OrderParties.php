@@ -2,6 +2,7 @@
 namespace Webit\Comarch\EDI\Order;
 
 use JMS\Serializer\Annotation as JMS;
+use Webit\Comarch\EDI\Order\Jms\ArrayType;
 use Webit\Comarch\EDI\Order\Parties\Buyer;
 use Webit\Comarch\EDI\Order\Parties\BuyerHeadquarters;
 use Webit\Comarch\EDI\Order\Parties\Receiver;
@@ -16,114 +17,57 @@ use Webit\Comarch\EDI\Order\Parties\OrderedBy;
 
 /**
  * @author Daniel Bojdo <daniel@bojdo.eu>
- * @JMS\XmlRoot("Order-Parties")
  */
-class OrderParties
+#[JMS\XmlRoot('Order-Parties')]
+final class OrderParties
 {
-    /**
-     * @var Buyer
-     * @JMS\Type("Webit\Comarch\EDI\Order\Parties\Buyer")
-     * @JMS\SerializedName("Buyer")
-     */
-    private $buyer;
+    #[JMS\SerializedName('Buyer')]
+    private ?Buyer $buyer = null;
 
-    /**
-     * @var BuyerHeadquarters
-     * @JMS\Type("array<Webit\Comarch\EDI\Order\Parties\BuyerHeadquarters>")
-     * @JMS\SerializedName("BuyerHeadquarters")
-     * @JMS\XmlList(inline = true, entry = "BuyerHeadquarters")
-     */
-    private $buyerHeadquarters = array();
+    #[JMS\Type(name: new ArrayType(BuyerHeadquarters::class))]
+    #[JMS\SerializedName('BuyerHeadquarters')]
+    #[JMS\XmlList(entry: 'BuyerHeadquarters', inline: true)]
+    private array $buyerHeadquarters = [];
 
-    /**
-     * @var Invoicee
-     * @JMS\Type("Webit\Comarch\EDI\Order\Parties\Invoicee")
-     * @JMS\SerializedName("Invoicee")
-     */
-    private $invoicee;
+    #[JMS\SerializedName('Invoicee')]
+    private ?Invoicee $invoicee = null;
 
-    /**
-     * @var Seller
-     * @JMS\Type("Webit\Comarch\EDI\Order\Parties\Seller")
-     * @JMS\SerializedName("Seller")
-     */
-    private $seller;
+    #[JMS\SerializedName('Seller')]
+    private ?Seller $seller = null;
 
-    /**
-     * @var DeliveryPoint
-     * @JMS\Type("Webit\Comarch\EDI\Order\Parties\DeliveryPoint")
-     * @JMS\SerializedName("DeliveryPoint")
-     */
-    private $deliveryPoint;
+    #[JMS\SerializedName('DeliveryPoint')]
+    private ?DeliveryPoint $deliveryPoint = null;
 
-    /**
-     * @var ShipFrom
-     * @JMS\Type("Webit\Comarch\EDI\Order\Parties\ShipFrom")
-     * @JMS\SerializedName("ShipFrom")
-     */
-    private $shipFrom;
+    #[JMS\SerializedName('ShipFrom')]
+    private ?ShipFrom $shipFrom = null;
 
-    /**
-     * @var UltimateCustomer
-     * @JMS\Type("Webit\Comarch\EDI\Order\Parties\UltimateCustomer")
-     * @JMS\SerializedName("UltimateCustomer")
-     */
-    private $ultimateCustomer;
+    #[JMS\SerializedName('UltimateCustomer')]
+    private ?UltimateCustomer $ultimateCustomer = null;
 
-    /**
-     * @var Carrier
-     * @JMS\Type("Webit\Comarch\EDI\Order\Parties\Carrier")
-     * @JMS\SerializedName("Carrier")
-     */
-    private $carrier;
+    #[JMS\SerializedName('Carrier')]
+    private ?Carrier $carrier = null;
 
-    /**
-     * @var OrderedBy
-     * @JMS\Type("Webit\Comarch\EDI\Order\Parties\OrderedBy")
-     * @JMS\SerializedName("OrderedBy")
-     */
-    private $orderedBy;
+    #[JMS\SerializedName('OrderedBy')]
+    private ?OrderedBy $orderedBy = null;
 
-    /**
-     * @var Sender
-     * @JMS\Type("Webit\Comarch\EDI\Order\Parties\Sender")
-     * @JMS\SerializedName("Sender")
-     */
-    private $sender;
+    #[JMS\SerializedName('Sender')]
+    private ?Sender $sender = null;
 
-    /**
-     * @var Receiver
-     * @JMS\Type("Webit\Comarch\EDI\Order\Parties\Receiver")
-     * @JMS\SerializedName("Receiver")
-     */
-    private $receiver;
+    #[JMS\SerializedName('Receiver')]
+    private ?Receiver $receiver = null;
 
-    /**
-     * OrderParties constructor.
-     * @param Buyer $buyer
-     * @param BuyerHeadquarters[] $buyerHeadquarters
-     * @param Invoicee $invoicee
-     * @param Seller $seller
-     * @param DeliveryPoint $deliveryPoint
-     * @param ShipFrom $shipFrom
-     * @param UltimateCustomer $ultimateCustomer
-     * @param Carrier $carrier
-     * @param OrderedBy $orderedBy
-     * @param Sender $sender
-     * @param Receiver $receiver
-     */
     public function __construct(
-        Buyer $buyer = null,
-        array $buyerHeadquarters = array(),
-        Invoicee $invoicee = null,
-        Seller $seller = null,
-        DeliveryPoint $deliveryPoint = null,
-        ShipFrom $shipFrom = null,
-        UltimateCustomer $ultimateCustomer = null,
-        Carrier $carrier = null,
-        OrderedBy $orderedBy = null,
-        Sender $sender = null,
-        Receiver $receiver = null
+        ?Buyer $buyer = null,
+        array $buyerHeadquarters = [],
+        ?Invoicee $invoicee = null,
+        ?Seller $seller = null,
+        ?DeliveryPoint $deliveryPoint = null,
+        ?ShipFrom $shipFrom = null,
+        ?UltimateCustomer $ultimateCustomer = null,
+        ?Carrier $carrier = null,
+        ?OrderedBy $orderedBy = null,
+        ?Sender $sender = null,
+        ?Receiver $receiver = null
     ) {
         $this->buyer = $buyer;
         $this->buyerHeadquarters = $buyerHeadquarters;
@@ -138,58 +82,43 @@ class OrderParties
         $this->receiver = $receiver;
     }
 
-    /**
-     * @return Buyer
-     */
-    public function getBuyer()
+    public function getBuyer(): ?Buyer
     {
         return $this->buyer;
     }
 
-    /**
-     * @param Buyer $buyer            
-     */
-    public function setBuyer(Buyer $buyer)
+    public function setBuyer(Buyer $buyer): void
     {
         $this->buyer = $buyer;
     }
 
     /**
-     * @return BuyerHeadquarters
+     * @return BuyerHeadquarters[]
      */
-    public function getBuyerHeadquarters()
+    public function getBuyerHeadquarters(): array
     {
         return $this->buyerHeadquarters;
     }
 
     /**
-     * @param BuyerHeadquarters $buyerHeadquarters            
+     * @param BuyerHeadquarters[] $buyerHeadquarters
      */
-    public function setBuyerHeadquarters(BuyerHeadquarters $buyerHeadquarters)
+    public function setBuyerHeadquarters(array $buyerHeadquarters): void
     {
         $this->buyerHeadquarters = $buyerHeadquarters;
     }
 
-    /**
-     * @return Invoicee
-     */
-    public function getInvoicee()
+    public function getInvoicee(): ?Invoicee
     {
         return $this->invoicee;
     }
 
-    /**
-     * @param Invoicee $invoicee
-     */
-    public function setInvoicee(Invoicee $invoicee)
+    public function setInvoicee(Invoicee $invoicee): void
     {
         $this->invoicee = $invoicee;
     }
 
-    /**
-     * @return Seller
-     */
-    public function getSeller()
+    public function getSeller(): ?Seller
     {
         return $this->seller;
     }
@@ -197,119 +126,77 @@ class OrderParties
     /**
      * @param Seller $seller            
      */
-    public function setSeller(Seller $seller)
+    public function setSeller(Seller $seller): void
     {
         $this->seller = $seller;
     }
 
-    /**
-     * @return DeliveryPoint
-     */
-    public function getDeliveryPoint()
+    public function getDeliveryPoint(): ?DeliveryPoint
     {
         return $this->deliveryPoint;
     }
 
-    /**
-     * @param DeliveryPoint $deliveryPoint            
-     */
-    public function setDeliveryPoint(DeliveryPoint $deliveryPoint)
+    public function setDeliveryPoint(DeliveryPoint $deliveryPoint): void
     {
         $this->deliveryPoint = $deliveryPoint;
     }
 
-    /**
-     * @return ShipFrom
-     */
-    public function getShipFrom()
+    public function getShipFrom(): ?ShipFrom
     {
         return $this->shipFrom;
     }
 
-    /**
-     * @param ShipFrom $shipFrom            
-     */
-    public function setShipFrom(ShipFrom $shipFrom)
+    public function setShipFrom(ShipFrom $shipFrom): void
     {
         $this->shipFrom = $shipFrom;
     }
 
-    /**
-     * @return UltimateCustomer
-     */
-    public function getUltimateCustomer()
+    public function getUltimateCustomer(): ?UltimateCustomer
     {
         return $this->ultimateCustomer;
     }
 
-    /**
-     * @param UltimateCustomer $ultimateCustomer            
-     */
-    public function setUltimateCustomer(UltimateCustomer $ultimateCustomer)
+    public function setUltimateCustomer(UltimateCustomer $ultimateCustomer): void
     {
         $this->ultimateCustomer = $ultimateCustomer;
     }
 
-    /**
-     * @return Carrier
-     */
-    public function getCarrier()
+    public function getCarrier(): ?Carrier
     {
         return $this->carrier;
     }
 
-    /**
-     * @param Carrier $carrier            
-     */
-    public function setCarrier(Carrier $carrier)
+    public function setCarrier(Carrier $carrier): void
     {
         $this->carrier = $carrier;
     }
 
-    /**
-     * @return OrderedBy
-     */
-    public function getOrderedBy()
+    public function getOrderedBy(): ?OrderedBy
     {
         return $this->orderedBy;
     }
 
-    /**
-     * @param OrderedBy $orderedBy            
-     */
-    public function setOrderedBy(OrderedBy $orderedBy)
+    public function setOrderedBy(OrderedBy $orderedBy): void
     {
         $this->orderedBy = $orderedBy;
     }
 
-    /**
-     * @return Sender
-     */
-    public function getSender()
+    public function getSender(): ?Sender
     {
         return $this->sender;
     }
 
-    /**
-     * @param Sender $sender
-     */
-    public function setSender($sender)
+    public function setSender(Sender $sender): void
     {
         $this->sender = $sender;
     }
 
-    /**
-     * @return Receiver
-     */
-    public function getReceiver()
+    public function getReceiver(): ?Receiver
     {
         return $this->receiver;
     }
 
-    /**
-     * @param Receiver $receiver
-     */
-    public function setReceiver($receiver)
+    public function setReceiver(Receiver $receiver): void
     {
         $this->receiver = $receiver;
     }

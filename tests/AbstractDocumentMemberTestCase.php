@@ -1,19 +1,17 @@
 <?php
 namespace Webit\Comarch\EDI\Order;
 
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 /**
  * @author Daniel Bojdo <daniel@bojdo.eu>
  */
-abstract class AbstractDocumentMemberTest extends TestCase
+abstract class AbstractDocumentMemberTestCase extends TestCase
 {
-    /**
-     * @param array $arguments
-     * @dataProvider arguments
-     * @test
-     */
-    public function testConstructor($arguments)
+    #[DataProvider('arguments')]
+    public function testConstructor(array $arguments): void
     {
         $member = $this->newInstance($arguments);
 
@@ -24,12 +22,8 @@ abstract class AbstractDocumentMemberTest extends TestCase
         $this->assertTrue(true);
     }
 
-    /**
-     * @param array $arguments
-     * @dataProvider arguments
-     * @test
-     */
-    public function testSetters($arguments)
+    #[DataProvider('arguments')]
+    public function testSetters(array $arguments): void
     {
         $orderSummary = $this->newInstance();
         foreach ($arguments as $key => $value) {
@@ -37,26 +31,21 @@ abstract class AbstractDocumentMemberTest extends TestCase
             $getter = 'get'.ucfirst($key);
 
             call_user_func(array($orderSummary, $setter), $value);
-            $this->assertEquals($value, call_user_func(array($orderSummary, $getter)), sprintf('Property "%s" does not match', $key));
+            $this->assertEquals($value, call_user_func([$orderSummary, $getter]), sprintf('Property "%s" does not match', $key));
         }
-        $this->assertTrue(true);
+        self::assertTrue(true);
     }
 
-    /**
-     * @return array
-     */
-    abstract public function arguments();
+//    public static function argumentsProvider(): array
+//    {
+//        return static::arguments();
+//    }
 
-    /**
-     * @return string
-     */
-    abstract protected function memberClass();
+    abstract public static function arguments(): array;
 
-    /**
-     * @param array $arguments
-     * @return object
-     */
-    private function newInstance(array $arguments = array())
+    abstract protected function memberClass(): string;
+
+    private function newInstance(array $arguments = []): object
     {
         $reflection = new \ReflectionClass($this->memberClass());
 

@@ -1,40 +1,33 @@
 <?php
 namespace Webit\Comarch\EDI\Order\Parser;
 
+use PHPUnit\Framework\Attributes\Test;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
+use Webit\Comarch\EDI\Order\DocumentOrder;
 
 /**
  * @author Daniel Bojdo <daniel@bojdo.eu>
  */
 class XmlFileParserTest extends TestCase
 {
-    /**
-     * @var \PHPUnit_Framework_MockObject_MockObject|XmlParser
-     */
-    private $xmlParser;
+    private XmlParser&MockObject $xmlParser;
 
-    /**
-     * @var XmlFileParser
-     */
-    private $xmlFileParser;
+    private XmlFileParser $xmlFileParser;
 
     protected function setUp(): void
     {
-        $mockBuilder = $this->getMockBuilder('Webit\Comarch\EDI\Order\Parser\XmlParser');
+        $mockBuilder = $this->getMockBuilder(XmlParser::class);
         $this->xmlParser = $mockBuilder->disableOriginalConstructor()->getMock();
         $this->xmlFileParser = new XmlFileParser($this->xmlParser);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function shouldUseInnerParser()
     {
         $file = new \SplFileInfo(__DIR__.'/Examples/order-file.xml');
 
-        $expectedDocument = $this->getMockBuilder('Webit\Comarch\EDI\Order\DocumentOrder')
-                                    ->disableOriginalConstructor()
-                                    ->getMock();
+        $expectedDocument = new DocumentOrder();
 
         $this->xmlParser
             ->expects($this->once())
@@ -42,6 +35,6 @@ class XmlFileParserTest extends TestCase
             ->with(file_get_contents($file->getPathname()))
             ->willReturn($expectedDocument);
 
-        $this->assertSame($expectedDocument, $this->xmlFileParser->parse($file));
+        self::assertSame($expectedDocument, $this->xmlFileParser->parse($file));
     }
 }

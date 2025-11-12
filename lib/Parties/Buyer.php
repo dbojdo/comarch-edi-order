@@ -5,35 +5,27 @@ use JMS\Serializer\Annotation as JMS;
 
 /**
  * @author Daniel Bojdo <daniel@bojdo.eu>
- * @JMS\XmlRoot("Buyer")
  */
-class Buyer extends TaxAndAccountNumberAwareParty
+#[JMS\XmlRoot('Buyer')]
+final class Buyer extends TaxAndAccountNumberAwareParty
 {
-    /**
-     * @var string
-     * @JMS\Type("string")
-     * @JMS\SerializedName("CourtAndCapitalInformation")
-     */
-    private $courtAndCapitalInformation;
+    #[JMS\SerializedName('CourtAndCapitalInformation')]
+    private ?string $courtAndCapitalInformation = null;
 
-    /**
-     * @var string
-     * @JMS\Type("string")
-     * @JMS\SerializedName("ContactInformation")
-     */
-    private $contactInformation;
+    #[JMS\SerializedName('ContactInformation')]
+    private ?string $contactInformation = null;
 
     public function __construct(
-        $iln = null,
-        $taxId = null,
-        $accountNumber = null,
-        $name = null,
-        $streetAndNumber = null,
-        $cityName = null,
-        $postalCode = null,
-        $country = null,
-        $courtAndCapitalInformation = null,
-        $contactInformation = null
+        ?string $iln = null,
+        ?string $taxId = null,
+        ?string $accountNumber = null,
+        ?string $name = null,
+        ?string $streetAndNumber = null,
+        ?string $cityName = null,
+        ?string $postalCode = null,
+        ?string $country = null,
+        ?string $courtAndCapitalInformation = null,
+        ?string $contactInformation = null
     ) {
         parent::__construct($iln, $taxId, $accountNumber, $name, $streetAndNumber, $cityName, $postalCode, $country);
 
@@ -41,34 +33,22 @@ class Buyer extends TaxAndAccountNumberAwareParty
         $this->contactInformation = $contactInformation;
     }
 
-    /**
-     * @return string
-     */
-    public function getCourtAndCapitalInformation()
+    public function getCourtAndCapitalInformation(): ?string
     {
         return $this->courtAndCapitalInformation;
     }
 
-    /**
-     * @param string $courtAndCapitalInformation
-     */
-    public function setCourtAndCapitalInformation($courtAndCapitalInformation)
+    public function setCourtAndCapitalInformation(?string $courtAndCapitalInformation): void
     {
         $this->courtAndCapitalInformation = $courtAndCapitalInformation;
     }
 
-    /**
-     * @return string
-     */
-    public function getContactInformation()
+    public function getContactInformation(): ?string
     {
         return $this->contactInformation;
     }
 
-    /**
-     * @param string $contactInformation
-     */
-    public function setContactInformation($contactInformation)
+    public function setContactInformation(?string $contactInformation): void
     {
         $this->contactInformation = $contactInformation;
     }

@@ -5,27 +5,23 @@ use JMS\Serializer\Annotation as JMS;
 
 /**
  * @author Daniel Bojdo <daniel@bojdo.eu>
- * @JMS\XmlRoot("Carrier")
  */
-class Carrier
+#[JMS\XmlRoot('Carrier')]
+final class Carrier
 {
     /**
      * Typ transportu
      * 
      * @var int
      */
-    const TRANSPORT_MODE_SEA     = 10;
-    const TRANSPORT_MODE_TRAIN   = 20;
-    const TRANSPORT_MODE_ROAD    = 30;
-    const TRANSPORT_MODE_AIR     = 40;
-    const TRANSPORT_MODE_MULTI   = 60;
-    
-    /**
-     * @var string
-     * @JMS\SerializedName("ILN")
-     * @JMS\Type("string")
-     */
-    private $iln;
+    public const int TRANSPORT_MODE_SEA = 10;
+    public const int TRANSPORT_MODE_TRAIN = 20;
+    public const int TRANSPORT_MODE_ROAD = 30;
+    public const int TRANSPORT_MODE_AIR = 40;
+    public const int TRANSPORT_MODE_MULTI = 60;
+
+    #[JMS\SerializedName('ILN')]
+    private ?string $iln = null;
 
     /**
      * Transport type
@@ -34,52 +30,32 @@ class Carrier
      * 30 = drogowy
      * 40 = powietrzny
      * 60 = multimodalny
-     *
-     * @var int
-     * @JMS\SerializedName("ModeOfTransport")
-     * @JMS\Type("integer")
      */
-    private $modeOfTransport;
+    #[JMS\SerializedName('ModeOfTransport')]
+    private ?int $modeOfTransport = null;
 
-    /**
-     * Carrier constructor.
-     * @param int $iln
-     * @param int $modeOfTransport
-     */
-    public function __construct($iln = null, $modeOfTransport = null)
+    public function __construct(?string $iln = null, ?int $modeOfTransport = null)
     {
         $this->iln = $iln;
         $this->modeOfTransport = $modeOfTransport;
     }
 
-    /**
-     * @return int
-     */
-    public function getIln()
+    public function getIln(): ?string
     {
         return $this->iln;
     }
 
-    /**
-     * @param int $iln
-     */
-    public function setIln($iln)
+    public function setIln(?string $iln): void
     {
         $this->iln = $iln;
     }
 
-    /**
-     * @return int
-     */
-    public function getModeOfTransport()
+    public function getModeOfTransport(): ?int
     {
         return $this->modeOfTransport;
     }
 
-    /**
-     * @param int $modeOfTransport
-     */
-    public function setModeOfTransport($modeOfTransport)
+    public function setModeOfTransport(?int $modeOfTransport): void
     {
         $this->modeOfTransport = $modeOfTransport;
     }

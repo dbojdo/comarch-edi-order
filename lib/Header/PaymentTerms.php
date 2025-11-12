@@ -5,65 +5,37 @@ use JMS\Serializer\Annotation as JMS;
 
 /**
  * @author Daniel Bojdo <daniel@bojdo.eu>
- * @JMS\XmlRoot("PaymentTerms")
  */
-class PaymentTerms
+#[JMS\XmlRoot('PaymentTerms')]
+final class PaymentTerms
 {
-    /**
-     * @var string
-     * @JMS\Type("string")
-     * @JMS\SerializedName("PaymentDescription")
-     */
-    private $description;
+    #[JMS\SerializedName('PaymentDescription')]
+    private ?string $description = null;
 
-    /**
-     * @var float
-     * @JMS\Type("double")
-     * @JMS\SerializedName("Percentage")
-     */
-    private $percentage;
+    #[JMS\SerializedName('Percentage')]
+    private ?float $percentage = null;
 
-    /**
-     * Data płatności
-     * @var string
-     * @JMS\Type("string")
-     * @JMS\SerializedName("PaymentDate")
-     */
-    private $paymentDate;
+    #[JMS\SerializedName('PaymentDate')]
+    private ?string $paymentDate = null;
 
-    /**
-     * PaymentTerms constructor.
-     * @param string $description
-     * @param float $percentage
-     * @param \DateTime $paymentDate
-     */
-    public function __construct($description = null, $percentage = null, \DateTime $paymentDate = null)
+    public function __construct(?string $description = null, ?float $percentage = null, ?\DateTimeImmutable $paymentDate = null)
     {
         $this->description = $description;
         $this->percentage = $percentage;
         $this->paymentDate = $paymentDate->format('Y-m-d');
     }
 
-    /**
-     * @return string
-     */
-    public function getDescription()
+    public function getDescription(): ?string
     {
         return $this->description;
     }
 
-    /**
-     * @param string $description            
-     */
-    public function setDescription($description)
+    public function setDescription(?string $description): void
     {
         $this->description = $description;
     }
 
-    /**
-     * @return float
-     */
-    public function getPercentage()
+    public function getPercentage(): ?float
     {
         return $this->percentage;
     }
@@ -71,23 +43,17 @@ class PaymentTerms
     /**
      * @param float $percentage
      */
-    public function setPercentage($percentage)
+    public function setPercentage(?float $percentage): void
     {
         $this->percentage = $percentage;
     }
 
-    /**
-     * @return \DateTime
-     */
-    public function getPaymentDate()
+    public function getPaymentDate(): ?\DateTimeImmutable
     {
-        return $this->paymentDate ? date_create($this->paymentDate) : null;
+        return $this->paymentDate ? date_create_immutable($this->paymentDate) : null;
     }
 
-    /**
-     * @param \DateTime $paymentDate            
-     */
-    public function setPaymentDate(\DateTime $paymentDate)
+    public function setPaymentDate(\DateTimeImmutable $paymentDate): void
     {
         $this->paymentDate = $paymentDate->format('Y-m-d');
     }
